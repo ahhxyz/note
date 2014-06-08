@@ -23,5 +23,8 @@ pear install phpunit/PHPUnit
 
 
 常用pear命令：
-列出远程服务器上面的phpunit可用包：
-pear remote-list -c phpunit
+列出可用更新：
+pear list-upgrades
+
+更新所有：
+pear upgrades-all
