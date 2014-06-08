@@ -4,3 +4,23 @@
 
 
 >##二、使用原始PHP
+如果安装目录没有go-pear.bat，则去http://pear.php.net/go-pear.phar下载
+然后再安装目录执行 php go-pear.phar，就会安装pear，并生成一个pear目录和pear.bat
+
+pear channel-discover pear.phpunit.de
+安装PHPUnit:
+pear install phpunit/PHPUnit
+完成后会生成phpunit和phpunit.bat文件。
+安装Skeleton框架生成器（用来生成测试文件）:
+
+
+
+三、完成PHPUnit安装后，
+pear install phpunit/PHPUnit_SkeletonGenerator
+如果提示依赖包满足不了要求就安装或更新对应包
+如果提示无法写入cache，就删除$/pear/cache下面的所有文件再进行安装
+
+
+常用pear命令：
+列出远程服务器上面的phpunit可用包：
+pear remote-list -c phpunit
