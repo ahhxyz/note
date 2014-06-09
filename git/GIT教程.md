@@ -3,7 +3,12 @@
 切换到要作为仓库的目录，创建一个本地的仓库：
 
     git init
+
+首次运行git，需运行 
     
+    git  git config --global user.email "you@example.com"
+    
+    git  git config --global user.name "Your Name"    
 在仓库添加、编辑文件
 将文件更改添加到本地仓库：
 
