@@ -23,7 +23,7 @@
 >>>>* 如果提示依赖包满足不了要求就安装或更新对应包，如：pear install components.ez.no/ConsoleTools
 >>>>* 如果提示无法写入cache，就删除$/pear/cache下面的所有文件再进行安装
 
-
+断言的格式是：`@assert (0,0) == 0`，少了中间的空格就无法正确生成测试用例
 常用pear命令：
 
 已安装的：
