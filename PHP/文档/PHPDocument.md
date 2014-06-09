@@ -12,3 +12,4 @@
 
 >>>>>>* 1.首次运行phpdoc要选择配置文件，根据提示选择即可。
 >>>>>>* 2.生成后，在文档目录用浏览器打开index.html接口查看文档。
+>>>>>>* 3.如果提示找不到php.exe，则要将phpdoc.bat里面的`SET phpCli=`这里设置为正确的值，比如：SET phpCli=A:\xampp\php\.\php.exe
