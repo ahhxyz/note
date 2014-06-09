@@ -50,6 +50,7 @@
 #GIT服务器搭建：
     $ yum install git -y
 >* ##小团队
+
 * 1.创建一个git用户:
 
     git useradd git
