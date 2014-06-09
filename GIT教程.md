@@ -54,7 +54,8 @@
 
     git useradd git
 >>>>如果是SSH方式，还要收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导      入到/home/git/.ssh/authorized_keys文件里，一行一个。
-　　
+
+
 * 2.初始化Git仓库:
 先选定一个目录作为Git仓库，这里以/data/git为例；
 在目录下输入命令：
