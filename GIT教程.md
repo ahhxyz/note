@@ -53,7 +53,9 @@
 
 * 1.创建一个git用户:
 
+    
     git useradd git
+    
 >>>>如果是SSH方式，还要收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导      入到/home/git/.ssh/authorized_keys文件里，一行一个。
 
 
@@ -61,9 +63,12 @@
 先选定一个目录作为Git仓库，这里以/data/git为例；
 在目录下输入命令：
 
+
     $  git init --bare demo.git
     chown -R git:git demo.git
 * 3.初始化本地仓库:
+
+
 
     git init
     
@@ -92,24 +97,34 @@ Gitosis和gitolite只是Git 服务管理工具，不需要它们一样可以搭�
 
 
 #常用GIT命令：
-分支操作：
-1.查看分支：
+###分支操作：
+
+* 查看分支：
+
+
 
     git branch
-2.创建分支：
+* 创建分支：
 
+
+    
     git branch name
     
-3.切换分支：
+* 切换分支：
 
+    
     git checkout name
-4.创建并切换分支：
+* 创建并切换分支：
 
+    
     git checkout -b name
-5.合并指定分支到当前分支：
+    
+* 合并指定分支到当前分支：
 
+    
     git merge name
-6.删除分支
+* 删除分支
 
+    
     git branch -d name
 
