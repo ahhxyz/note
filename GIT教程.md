@@ -67,10 +67,16 @@
     git config --global credential.helper store
 　　
 * 4.将本地仓库与远程仓库关联：
-    
+>>>>    
     git remote add origin git@yourserver:/git/demo.git
 
-　　克隆远程仓库：$ git clone git@yourserver:/git/demo.git
+* 5.克隆远程仓库：
+
+
+    $ git clone git@yourserver:/git/demo.git
+    
+    
+    
 
 　　yourserver为服务器地址(IP或域名)。
 　　
@@ -84,9 +90,20 @@ Gitosis和gitolite只是Git 服务管理工具，不需要它们一样可以搭�
 1.查看分支：
 
     git branch
-2.创建分支：git branch name
-3.切换分支：git checkout name
-4.创建并切换分支：git checkout -b name
-5.合并指定分支到当前分支：git merge name
-6.删除分支git branch -d name
+2.创建分支：
+
+    git branch name
+    
+3.切换分支：
+
+    git checkout name
+4.创建并切换分支：
+
+    git checkout -b name
+5.合并指定分支到当前分支：
+
+    git merge name
+6.删除分支
+
+    git branch -d name
 
