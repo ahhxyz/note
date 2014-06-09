@@ -1,32 +1,32 @@
 
->#ä½¿ç”¨XAMPP
->>XAMPPä¸­å·²è‡ªå¸¦äº†pearå’ŒPHPUnitï¼Œæ— éœ€è¿›è¡Œå®‰è£…ã€‚
->#ä½¿ç”¨PHPå®˜æ–¹åŒ…
->>* ##1.é¦–å…ˆå®‰è£…pear:
->>>å¦‚æœå®‰è£…ç›®å½•æ²¡æœ‰go-pear.batï¼Œåˆ™å»http://pear.php.net/go-pear.pharä¸‹è½½ã€‚
-ç„¶åå†å®‰è£…ç›®å½•æ‰§è¡Œ`php go-pear.phar`ï¼Œ
-å°±ä¼šå®‰è£…pearï¼Œå¹¶ç”Ÿæˆä¸€ä¸ªpearç›®å½•å’Œpear.batã€‚
-å¦‚æœæŒ‰ç…§ç›®å½•å­˜åœ¨go-bear.batåˆ™ç›´æ¥åœ¨å‘½ä»¤è¡Œè¿è¡Œä¹Ÿèƒ½å®Œæˆpearçš„å®‰è£…ã€‚
+>#Ê¹ÓÃXAMPP
+>>XAMPPÖĞÒÑ×Ô´øÁËpearºÍPHPUnit£¬ÎŞĞè½øĞĞ°²×°¡£
+>#Ê¹ÓÃPHP¹Ù·½°ü
+>>* ##1.Ê×ÏÈ°²×°pear:
+>>>Èç¹û°²×°Ä¿Â¼Ã»ÓĞgo-pear.bat£¬ÔòÈ¥http://pear.php.net/go-pear.pharÏÂÔØ¡£
+È»ºóÔÙ°²×°Ä¿Â¼Ö´ĞĞ`php go-pear.phar`£¬
+¾Í»á°²×°pear£¬²¢Éú³ÉÒ»¸öpearÄ¿Â¼ºÍpear.bat¡£
+Èç¹û°´ÕÕÄ¿Â¼´æÔÚgo-bear.batÔòÖ±½ÓÔÚÃüÁîĞĞÔËĞĞÒ²ÄÜÍê³ÉpearµÄ°²×°¡£
 
->>* ###2.å®Œæˆpearçš„å®‰è£…åï¼Œå°±è¦å®‰è£…PHPUnitäº†
->>>* 1.é¦–å…ˆæ·»åŠ é¢‘é“ï¼š`pear channel-discover pear.phpunit.de`
->>>* 2.å®‰è£…PHPUnit:  `pear install phpunit/PHPUnit` ã€‚å®Œæˆåä¼šåœ¨PHPå®‰è£…ç›®å½•ç”Ÿæˆphpunitå’Œphpunit.batæ–‡ä»¶ã€‚
-
-
-
->#å®‰è£…Skeletonæ¡†æ¶ç”Ÿæˆå™¨:
-    PHPUunitåªæ˜¯ä¸ªæµ‹è¯•æ¡†æ¶ï¼Œå¹¶ä¸ä¼šç”Ÿæˆæµ‹è¯•ä»£ç ï¼Œè¦ç”Ÿæˆæµ‹è¯•ä»£ç ï¼Œå°±è¦å†å®‰è£…skeleton.
-    å®‰è£…å‰è¦ç¡®ä¿æ‰§è¡Œäº†å‰é¢çš„æ·»åŠ é¢‘é“çš„æ“ä½œã€‚
->>* 1.åˆ—å‡ºæœåŠ¡å™¨ä¸Šé¢å¯ç”¨çš„ï¼š`pear remote-list -c phpunit`
->>* 2.å®‰è£…ï¼š`pear install phpunit/PHPUnit_SkeletonGenerator`
->>>å®‰è£…æ—¶çš„å¸¸è§é”™è¯¯ï¼š
->>>>* å¦‚æœæç¤ºä¾èµ–åŒ…æ»¡è¶³ä¸äº†è¦æ±‚å°±å®‰è£…æˆ–æ›´æ–°å¯¹åº”åŒ…ï¼Œå¦‚ï¼špear install components.ez.no/ConsoleTools
->>>>* å¦‚æœæç¤ºæ— æ³•å†™å…¥cacheï¼Œå°±åˆ é™¤$/pear/cacheä¸‹é¢çš„æ‰€æœ‰æ–‡ä»¶å†è¿›è¡Œå®‰è£…
+>>* ###2.Íê³ÉpearµÄ°²×°ºó£¬¾ÍÒª°²×°PHPUnitÁË
+>>>* 1.Ê×ÏÈÌí¼ÓÆµµÀ£º`pear channel-discover pear.phpunit.de`
+>>>* 2.°²×°PHPUnit:  `pear install phpunit/PHPUnit` ¡£Íê³Éºó»áÔÚPHP°²×°Ä¿Â¼Éú³ÉphpunitºÍphpunit.batÎÄ¼ş¡£
 
 
-å¸¸ç”¨pearå‘½ä»¤ï¼š
-åˆ—å‡ºå¯ç”¨æ›´æ–°ï¼š
+
+>#°²×°Skeleton¿ò¼ÜÉú³ÉÆ÷:
+    PHPUunitÖ»ÊÇ¸ö²âÊÔ¿ò¼Ü£¬²¢²»»áÉú³É²âÊÔ´úÂë£¬ÒªÉú³É²âÊÔ´úÂë£¬¾ÍÒªÔÙ°²×°skeleton.
+    °²×°Ç°ÒªÈ·±£Ö´ĞĞÁËÇ°ÃæµÄÌí¼ÓÆµµÀµÄ²Ù×÷¡£
+>>* 1.ÁĞ³ö·şÎñÆ÷ÉÏÃæ¿ÉÓÃµÄ£º`pear remote-list -c phpunit`
+>>* 2.°²×°£º`pear install phpunit/PHPUnit_SkeletonGenerator`
+>>>°²×°Ê±µÄ³£¼û´íÎó£º
+>>>>* Èç¹ûÌáÊ¾ÒÀÀµ°üÂú×ã²»ÁËÒªÇó¾Í°²×°»ò¸üĞÂ¶ÔÓ¦°ü£¬Èç£ºpear install components.ez.no/ConsoleTools
+>>>>* Èç¹ûÌáÊ¾ÎŞ·¨Ğ´Èëcache£¬¾ÍÉ¾³ı$/pear/cacheÏÂÃæµÄËùÓĞÎÄ¼şÔÙ½øĞĞ°²×°
+
+
+³£ÓÃpearÃüÁî£º
+ÁĞ³ö¿ÉÓÃ¸üĞÂ£º
 pear list-upgrades
 
-æ›´æ–°æ‰€æœ‰ï¼š
+¸üĞÂËùÓĞ£º
 pear upgrades-all
