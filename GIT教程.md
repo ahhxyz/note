@@ -38,8 +38,12 @@
 
 
 #二、克隆远程仓库：
-1.从远程仓库拉取代码：git clone 
-2.提交到远程库：git push https://github.com/sunbay
+1.从远程仓库拉取代码：
+    
+    git clone 
+2.提交到远程库：
+
+    git push https://github.com/sunbay
 
 
 
