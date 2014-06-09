@@ -1,7 +1,6 @@
 
 >##一、使用XAMPP
-
-pear channel-discover pear.phpunit.de
+  +1.pear channel-discover pear.phpunit.de
 
 
 >##二、使用原始PHP
