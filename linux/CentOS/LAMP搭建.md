@@ -21,7 +21,7 @@
 
 ##安装php：##
   	#  yum install php
-  	#  /etc/init.d/httpd restart
+  	
 
 >###php5.5的安装方法：###
 >>#####CentOS/RHEL 6.x:
@@ -29,5 +29,9 @@
 	yum install php55w php55w-opcache -y
 >###安装PHP扩展
 >>
-	yum  install php-pgsql php-gd
+	yum  install php55w-pgsql php55w-gd -y
+
+安装完成后：
+>	
+	#  /etc/init.d/httpd restart
 
