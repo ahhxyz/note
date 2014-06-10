@@ -17,10 +17,11 @@ SELinux status: enabled就表示开启状态。
 
 #虚拟主机配置
 网站路径如果是在/home下面，就会提示找不到目录；所以放到/var下面
-
-##vhosts.conf:
->###PHP5.5-
->
+>##http.conf
+去掉`Include conf/vhosts/vhosts.conf`前面的注释，如果没有这句则手动添加。 
+>##vhosts.conf:
+>>###PHP5.5-
+>>
 	<VirtualHost  *:80>
 	ServerName www.demo.com
 	DocumentRoot /var/phpApp/demo
@@ -31,8 +32,8 @@ SELinux status: enabled就表示开启状态。
     #   Allow from all 
     #  </Directory>
 	</VirtualHost>
->###PHP5.5+
->
+>>###PHP5.5+
+>>
 	<VirtualHost *:80>
 	ServerName www.demo.com
 	DocumentRoot "/var/phpApp/demo"
@@ -43,8 +44,8 @@ SELinux status: enabled就表示开启状态。
       </Directory>
 	</VirtualHost>
 
-如果是配置的本地域名，则还需要在host加上`ServerName`的值：
-
+>如果是配置的本地域名，则还需要在host加上`ServerName`的值：
+>
 	# echo 127.0.0.1 demo >> /etc/host
 之后，在浏览器输入：`http:demo`就可以访问站点了。
 
