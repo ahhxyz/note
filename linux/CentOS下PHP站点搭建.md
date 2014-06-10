@@ -37,9 +37,9 @@ SELinux status: enabled就表示开启状态。
 	ServerName www.demo.com
 	DocumentRoot "/var/phpApp/demo"
       <Directory />
-       Options FollowSymLinks
-       AllowOverride all
-       Require all granted 
+      # Options FollowSymLinks
+      # AllowOverride all
+        Require all granted #不加这句就会出现403禁止访问的错误 
       </Directory>
 	</VirtualHost>
 
@@ -54,3 +54,4 @@ SELinux status: enabled就表示开启状态。
     	DocumentRoot "/var/www/home"
     	ServerName localhost    
 	</VirtualHost>
+此配置适用于所有版本，不用加`Require all granted`.
