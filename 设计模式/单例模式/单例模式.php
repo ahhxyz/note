@@ -1,12 +1,35 @@
 <?php
-error_reporting(E_ALL);//生产环境将此值改成0
-ini_set('magic_quotes_gpc','on');
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
-date_default_timezone_set('PRC');
-define('APP_NAME','erp');
-define('APP_DEBUG',false);
-define('APP_PATH','./../Common/');
+class Config{
+/*-----------------必须部分-----------------------------------------------------*/
+    static private $instance=NULL;
 
-require('../Common/ThinkPHP/ThinkPHP.php');
+
+    private function __construct() {
+        
+    }
+    
+    private function __clone() {}
+    
+    static function getInstance(){
+        if(self::$instance=NULL){
+            self::$instance=new Config;
+        }
+        
+        return self::$instance;
+        
+    }
+/*-------------------------------------------------------------------------------/
+ * ---------------------END 必须部分----------------------------------------------/
+ *----------------------------------------------------------------------------- */
+    
+    
+    /**
+     * 该方法是实例方法，仅作示范
+     */
+    public function demo(){
+        echo "demo";
+    }
+}
+//单例的Config类一律通过Config::getInstance()来调用Config类的实例方法。
+Config::getInstance()->demo();
 ?>
