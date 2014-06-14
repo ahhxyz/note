@@ -12,7 +12,7 @@ CLI的主源代码文件在{PHPSRC}/sapi/cli/php_cli.c,整个过程就从这个�
 
 * 1.执行`{PHPSRC}/main/main.c`中的[`php_execute_script(zend_file_handle *primary_file TSRMLS_DC)`](https://github.com/php/php-src/blob/master/main/main.c#L2466)函数：
 	
-	`zend_file_handle`类型是zend对`文件句柄`的一个封装，这个句柄指向了正在执行的PHP文件，这里就是demo.php。
+	`zend_file_handle`类型是zend对`文件句柄`的一个封装，这个句柄指向了正在执行的PHP文件，它其实就是PHP文件的路径。
 * 2.`php_execute_script()`调用`zend_execute_scripts()`：
 		
 	在`zend_execute_scripts()`中，最重要的就是：
