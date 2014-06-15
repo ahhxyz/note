@@ -13,7 +13,7 @@ include "BubbleSort.h"
 
 void BubbleSort(int a[],int len){
 	for (int i = 0; i < len; ++i){//对序列从头到尾进行遍历
-		for (int j = len-1; j>i&&a[j-1]>a[j]; i--){ //每次扫描都是从尾到头
+		for (int j = len-1; j>i&&a[j-1]>a[j]; i--){ //每次遍历时，对序列从尾到头进行扫描，
 		    int tmp=a[j-1];
 			a[j-1]=a[j];
 			a[j]=tmp;
