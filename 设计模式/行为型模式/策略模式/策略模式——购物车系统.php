@@ -56,7 +56,7 @@ class Pirce{
      * 传入具体的策略类对象
      * @param Strategh $instance 具体的策略类对象
      */
-    public function __construct($instance) {
+    public function __construct(Strategy $instance) {
         $this->strategyInstace=$instance;
     }
     
