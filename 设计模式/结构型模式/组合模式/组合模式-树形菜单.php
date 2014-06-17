@@ -17,6 +17,10 @@ abstract class MenuComponent{
     public abstract function show();
 }
 
+
+/**
+ * 叶节点
+ */
 class MenuItem extends MenuComponent{
     public function __construct($name){
         $this->name = $name;
@@ -39,6 +43,10 @@ class MenuItem extends MenuComponent{
     }
 }
 
+
+/**
+ * 分支节点类
+ */
 class Menu extends MenuComponent{
     public $menuComponents = array();
     public function __construct($name){
