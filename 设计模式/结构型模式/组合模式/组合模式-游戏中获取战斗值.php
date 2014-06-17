@@ -59,7 +59,7 @@ class SpecialSoldier extends FightUnit{
 
 
 /**
- * 作战单位：班
+ * 作战单位：战斗小组
  */
 
 class  Squads extends FightUnit{
@@ -88,10 +88,10 @@ $步兵甲=new Soldier("步兵甲",100);
 $步兵乙=new Soldier("步兵乙",100);
 $特种兵甲=new SpecialSoldier("特种兵甲",1000);
 
-$战斗小组=new Squads("战斗小组甲");
-$战斗小组->add($步兵甲);
-$战斗小组->add($步兵乙);
-echo PHP_EOL."战斗小组甲的战斗力是：".$战斗小组->valueCount();
-$战斗小组->add($特种兵甲);
-echo PHP_EOL."增加一个特种兵后，战斗小组甲的战斗力是：".$战斗小组->valueCount();
+$战斗小组甲=new Squads("战斗小组甲");
+$战斗小组甲->add($步兵甲);
+$战斗小组甲->add($步兵乙);
+echo PHP_EOL."战斗小组甲的战斗力是：".$战斗小组甲->valueCount();
+$战斗小组甲->add($特种兵甲);
+echo PHP_EOL."增加一个特种兵后，战斗小组甲的战斗力是：".$战斗小组甲->valueCount();
 
