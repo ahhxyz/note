@@ -12,7 +12,8 @@ int main(){
     printf("申请内存来存放一个节点，并以此节点来初始化二叉树\n");
     d=init();
     //node=find(d,"A");
-    printf("%s\n",d->data);
+    printf("%p\n",d->data);
+    getchar();
     //添加节点
     /*
     do{

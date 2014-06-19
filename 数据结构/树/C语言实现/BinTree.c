@@ -1,10 +1,12 @@
 /*
  *二叉树
+ * 代码未测试
  */
 
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "BinTree.h"
 
 /**
@@ -16,10 +18,10 @@ ChainBinTree *init(){
     ChainBinTree *node;
     if(node=(ChainBinTree *)malloc(sizeof(ChainBinTree))){
         printf("请输入根节点的值：");
-        scanf("%d",&node->data);
+        fgets(node->data,10,stdin);
         node->left=NULL;
         node->right=NULL;
-        
+        printf("%s\n",node->data);
         return node;
     }
     return NULL;
@@ -70,11 +72,11 @@ ChainBinTree *find(ChainBinTree *d,char *data){
         return d;
     }
     
-    if(d->left->data==data){
+    if(strcmp(d->left->data,data)==0){
         return d;
     }
     
-    if(d->left->data==data){
+    if(strcmp(d->right->data,data)==0){
         return d;
     }
 }
