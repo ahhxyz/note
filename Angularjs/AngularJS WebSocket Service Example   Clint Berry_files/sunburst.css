@@ -1,0 +1,29 @@
+/**
+* @plugin name WP Code Highlight
+* @plugin url http://boliquan.com/wp-code-highlight/
+*/
+pre .str{color:#65B042;}
+pre .kwd{color:#E28964;}
+pre .com{color:#AEAEAE;font-style:italic;}
+pre .typ{color:#89bdff;}
+pre .lit{color:#3387CC;}
+pre .pun{color:#fff;}
+pre .pln{color:#fff;}
+pre .tag{color:#89bdff;}
+pre .atn{color:#bdb76b;}
+pre .atv{color:#65B042;}
+pre .dec{color:#3387CC;}
+
+pre.prettyprint{
+	background-color:#000;
+	font-size:12px;line-height:16px;margin:6px 0px;padding:2px 7px;word-wrap:normal;overflow:auto;width:98%;
+}
+ol.linenums li{line-height:16px;margin:0px;padding:0px;list-style:none;}
+ol.linenums li:before,ol.linenums li:after{content:none;}
+ol.linenums{margin:0;padding-left:27px;color:#AEAEAE;}
+ol.linenums li.L0,ol.linenums li.L1,ol.linenums li.L2,ol.linenums li.L3,ol.linenums li.L4,ol.linenums li.L5,ol.linenums li.L6,ol.linenums li.L7,ol.linenums li.L8,ol.linenums li.L9{
+	list-style-type:decimal;
+}
+ol.linenums li.L1,ol.linenums li.L3,ol.linenums li.L5,ol.linenums li.L7,ol.linenums li.L9{
+	list-style-type:decimal;
+}

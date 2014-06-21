@@ -105,31 +105,31 @@ Gitosis和gitolite只是Git 服务管理工具，不需要它们一样可以搭�
 ###分支操作：
 
 * 查看分支：
+	
+		git branch
 
-
-
-    git branch
-* 创建分支：
-
-
-    
-    git branch name
+* 创建分支：  
+*   
+    	git branch name
     
 * 切换分支：
-
     
-    git checkout name
+    	git checkout name
 * 创建并切换分支：
-
     
-    git checkout -b name
+    	git checkout -b name
+
+* 从远程分支提取
+
+		git fetch origin
     
 * 合并指定分支到当前分支：
-
     
-    git merge name
-* 删除分支
+    	git merge name
+* 从远程获取最新代码并合并到本地分支
 
+		git pull 远程分支origin 本地分支master
+* 删除分支：
     
-    git branch -d name
+    	git branch -d name
 

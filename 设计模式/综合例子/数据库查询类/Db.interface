@@ -1,0 +1,8 @@
+<?php
+
+interface Db{
+    public function query();
+    
+    pubic function exce();
+}
+

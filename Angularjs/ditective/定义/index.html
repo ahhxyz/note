@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="directiveExtensionApp">
+
+  <head>
+    <script data-require="angular.js@1.1.5" data-semver="1.1.5" src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css" />
+    
+    <script src="script.js"></script>
+    <script src="directive_extension.js"></script>
+  </head>
+
+  <body ng-controller="foo">
+    <h3>NAMES ON A TABLE</h3>
+    <table width="100%">
+      <tbody my-table-directive></tbody>
+    </table>
+  </body>
+
+</html>

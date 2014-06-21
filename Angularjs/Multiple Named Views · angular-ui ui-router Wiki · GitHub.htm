@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views -->
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms no-csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths no-csspositionsticky filereader eventsource xhr2"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Multiple Named Views · angular-ui/ui-router Wiki · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144.png">
+    <link rel="logo" type="image/svg" href="https://github-media-downloads.s3.amazonaws.com/github-logo.svg">
+    <meta property="og:image" content="https://github.global.ssl.fastly.net/images/modules/logos_page/Octocat.png">
+    <meta name="hostname" content="fe4.rs.github.com">
+    <link rel="assets" href="https://github.global.ssl.fastly.net/">
+    <link rel="xhr-socket" href="https://github.com/_sockets">
+    
+    
+
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_wiki" data-pjax-transient="">
+    <meta content="collector.githubapp.com" name="octolytics-host"><meta content="github" name="octolytics-app-id">
+
+    
+    
+    <link rel="icon" type="image/x-icon" href="https://github.com/favicon.ico">
+
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="fJDm4ZmRbXz8K4yagon7Mmnws+iNB0zwvUjaOPj5l3o=" name="csrf-token">
+
+    <link href="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/github-f913aa6cea9c2be873a594b06df4bdd56c61a47a.css" media="all" rel="stylesheet" type="text/css">
+    <link href="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/github2-73cb9c180ee487edb3f37f7f9b1cbf7bd6ebe204.css" media="all" rel="stylesheet" type="text/css">
+    
+
+
+      <script src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/frameworks-e8054ad804a1cf9e9849130fee5a4a5487b663ed.js" type="text/javascript"></script>
+      <script src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/github-97664a532fc6064b297cd0484a0b7bfda19f46b4.js" type="text/javascript"></script><script type="text/javascript" async="" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/ga.js"></script>
+      
+      <meta http-equiv="x-pjax-version" content="6eeba794374d861b396b25d9719604b1">
+
+        <script src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/wiki-5f94f237a61cfac742b656f8a10702b3b86e9b37.js" type="text/javascript"></script>
+  <meta property="og:title" content="ui-router">
+  <meta property="og:type" content="githubog:gitrepository">
+  <meta property="og:url" content="https://github.com/angular-ui/ui-router">
+  <meta property="og:image" content="https://github.global.ssl.fastly.net/images/gravatars/gravatar-user-420.png">
+  <meta property="og:site_name" content="GitHub">
+  <meta property="og:description" content="ui-router - UI-Router for Nested Routing by the AngularUI Team!">
+
+  <meta name="description" content="ui-router - UI-Router for Nested Routing by the AngularUI Team!">
+
+  <meta content="1530011" name="octolytics-dimension-user_id"><meta content="angular-ui" name="octolytics-dimension-user_login"><meta content="7693799" name="octolytics-dimension-repository_id"><meta content="angular-ui/ui-router" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="7693799" name="octolytics-dimension-repository_network_root_id"><meta content="angular-ui/ui-router" name="octolytics-dimension-repository_network_root_nwo">
+  <link href="https://github.com/angular-ui/ui-router/commits/master.atom" rel="alternate" title="Recent Commits to ui-router:master" type="application/atom+xml">
+
+  <script type="text/javascript" async="" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/api.js"></script></head>
+
+
+  <body class="logged_out  windows vis-public env-production " style="">
+
+    <div class="wrapper">
+      
+      
+      
+
+
+      
+      <div class="header header-logged-out">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/">
+      <span class="mega-octicon octicon-logo-github"></span>
+    </a>
+
+    <div class="header-actions">
+        <a class="button primary" href="https://github.com/signup">Sign up</a>
+      <a class="button" href="https://github.com/login?return_to=%2Fangular-ui%2Fui-router%2Fwiki%2FMultiple-Named-Views">Sign in</a>
+    </div>
+
+    <div class="command-bar js-command-bar  in-repository">
+
+
+      <ul class="top-nav">
+          <li class="explore"><a href="https://github.com/explore">Explore</a></li>
+        <li class="features"><a href="https://github.com/features">Features</a></li>
+          <li class="enterprise"><a href="https://enterprise.github.com/">Enterprise</a></li>
+          <li class="blog"><a href="https://github.com/blog">Blog</a></li>
+      </ul>
+        <form accept-charset="UTF-8" action="https://github.com/search" class="command-bar-form" id="top_search_form" method="get">
+
+<input type="text" data-hotkey="/ s" name="q" id="js-command-bar-field" placeholder="Search or type a command" tabindex="1" autocapitalize="off" data-repo="angular-ui/ui-router" data-branch="master" data-sha="8a5099077ffa8a5bfac85d7b9e17927c3a15a803">
+
+    <input type="hidden" name="nwo" value="angular-ui/ui-router">
+
+    <div class="select-menu js-menu-container js-select-menu search-context-select-menu">
+      <span class="minibutton select-menu-button js-menu-target">
+        <span class="js-select-button">This repository</span>
+      </span>
+
+      <div class="select-menu-modal-holder js-menu-content js-navigation-container">
+        <div class="select-menu-modal">
+
+          <div class="select-menu-item js-navigation-item js-this-repository-navigation-item selected">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" class="js-search-this-repository" name="search_target" value="repository" checked="checked">
+            <div class="select-menu-item-text js-select-button-text">This repository</div>
+          </div> <!-- /.select-menu-item -->
+
+          <div class="select-menu-item js-navigation-item js-all-repositories-navigation-item">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" name="search_target" value="global">
+            <div class="select-menu-item-text js-select-button-text">All repositories</div>
+          </div> <!-- /.select-menu-item -->
+
+        </div>
+      </div>
+    </div>
+
+  <span class="octicon help tooltipped downwards" original-title="Show command bar help">
+    <span class="octicon octicon-question"></span>
+  </span>
+
+
+  <input type="hidden" name="ref" value="cmdform">
+
+</form>
+    </div>
+
+  </div>
+</div>
+
+
+      
+
+
+          <div class="site" itemscope="" itemtype="http://schema.org/WebPage">
+    
+    <div class="pagehead repohead instapaper_ignore readability-menu">
+      <div class="container">
+        
+
+<ul class="pagehead-actions">
+
+
+  <li>
+  <a href="https://github.com/login?return_to=%2Fangular-ui%2Fui-router" class="minibutton with-count js-toggler-target star-button entice tooltipped upwards " rel="nofollow" original-title="You must be signed in to use this feature">
+  <span class="octicon octicon-star"></span>Star
+</a>
+<a class="social-count js-social-count" href="https://github.com/angular-ui/ui-router/stargazers">
+  761
+</a>
+
+  </li>
+
+    <li>
+      <a href="https://github.com/login?return_to=%2Fangular-ui%2Fui-router" class="minibutton with-count js-toggler-target fork-button entice tooltipped upwards" rel="nofollow" original-title="You must be signed in to fork a repository">
+        <span class="octicon octicon-git-branch"></span>Fork
+      </a>
+      <a href="https://github.com/angular-ui/ui-router/network" class="social-count">
+        117
+      </a>
+    </li>
+</ul>
+
+        <h1 itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+          <span class="repo-label"><span>public</span></span>
+          <span class="mega-octicon octicon-repo"></span>
+          <span class="author">
+            <a href="https://github.com/angular-ui" class="url fn" itemprop="url" rel="author"><span itemprop="title">angular-ui</span></a></span><span class="repohead-name-divider">/</span><strong><a href="https://github.com/angular-ui/ui-router" class="js-current-repository js-repo-home-link">ui-router</a></strong>
+
+          <span class="page-context-loader">
+            <img alt="Octocat-spinner-32" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+          </span>
+
+        </h1>
+      </div><!-- /.container -->
+    </div><!-- /.repohead -->
+
+    <div class="container">
+
+      <div class="repository-with-sidebar repo-container">
+
+        <div class="repository-sidebar">
+            
+
+<div class="repo-nav repo-nav-full js-repository-container-pjax js-octicon-loaders">
+  <div class="repo-nav-contents">
+    <ul class="repo-menu">
+      <li class="tooltipped leftwards" original-title="Code">
+        <a href="https://github.com/angular-ui/ui-router" aria-label="Code" class="js-selected-navigation-item" data-gotokey="c" data-pjax="true" data-selected-links="repo_source repo_downloads repo_commits repo_tags repo_branches /angular-ui/ui-router">
+          <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+</a>      </li>
+
+        <li class="tooltipped leftwards" original-title="Issues">
+          <a href="https://github.com/angular-ui/ui-router/issues" aria-label="Issues" class="js-selected-navigation-item js-disable-pjax" data-gotokey="i" data-selected-links="repo_issues /angular-ui/ui-router/issues">
+            <span class="octicon octicon-issue-opened"></span> <span class="full-word">Issues</span>
+            <span class="counter">96</span>
+            <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+</a>        </li>
+
+      <li class="tooltipped leftwards" original-title="Pull Requests"><a href="https://github.com/angular-ui/ui-router/pulls" aria-label="Pull Requests" class="js-selected-navigation-item js-disable-pjax" data-gotokey="p" data-selected-links="repo_pulls /angular-ui/ui-router/pulls">
+            <span class="octicon octicon-git-pull-request"></span> <span class="full-word">Pull Requests</span>
+            <span class="counter">6</span>
+            <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+</a>      </li>
+
+
+        <li class="tooltipped leftwards" original-title="Wiki">
+          <a href="https://github.com/angular-ui/ui-router/wiki" aria-label="Wiki" class="js-selected-navigation-item selected" data-pjax="true" data-selected-links="repo_wiki /angular-ui/ui-router/wiki">
+            <span class="octicon octicon-book"></span> <span class="full-word">Wiki</span>
+            <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+</a>        </li>
+    </ul>
+    <div class="repo-menu-separator"></div>
+    <ul class="repo-menu">
+
+      <li class="tooltipped leftwards" original-title="Pulse">
+        <a href="https://github.com/angular-ui/ui-router/pulse" aria-label="Pulse" class="js-selected-navigation-item" data-pjax="true" data-selected-links="pulse /angular-ui/ui-router/pulse">
+          <span class="octicon octicon-pulse"></span> <span class="full-word">Pulse</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+</a>      </li>
+
+      <li class="tooltipped leftwards" original-title="Graphs">
+        <a href="https://github.com/angular-ui/ui-router/graphs" aria-label="Graphs" class="js-selected-navigation-item" data-pjax="true" data-selected-links="repo_graphs repo_contributors /angular-ui/ui-router/graphs">
+          <span class="octicon octicon-graph"></span> <span class="full-word">Graphs</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+</a>      </li>
+
+      <li class="tooltipped leftwards" original-title="Network">
+        <a href="https://github.com/angular-ui/ui-router/network" aria-label="Network" class="js-selected-navigation-item js-disable-pjax" data-selected-links="repo_network /angular-ui/ui-router/network">
+          <span class="octicon octicon-git-branch"></span> <span class="full-word">Network</span>
+          <img alt="Octocat-spinner-32" class="mini-loader" height="16" src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/octocat-spinner-32.gif" width="16">
+</a>      </li>
+
+    </ul>
+
+  </div>
+</div>
+
+            <div class="only-with-full-nav">
+              
+
+  
+
+<div class="clone-url open" data-protocol-type="http" data-url="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone">
+  <h3><strong>HTTPS</strong> clone URL</h3>
+
+  <input type="text" class="clone js-url-field" value="https://github.com/angular-ui/ui-router.git" readonly="readonly">
+
+  <span class="js-zeroclipboard url-box-clippy minibutton zeroclipboard-button" data-clipboard-text="https://github.com/angular-ui/ui-router.git" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
+</div>
+
+  
+
+<div class="clone-url " data-protocol-type="subversion" data-url="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone">
+  <h3><strong>Subversion</strong> checkout URL</h3>
+
+  <input type="text" class="clone js-url-field" value="https://github.com/angular-ui/ui-router" readonly="readonly">
+
+  <span class="js-zeroclipboard url-box-clippy minibutton zeroclipboard-button" data-clipboard-text="https://github.com/angular-ui/ui-router" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
+</div>
+
+
+
+<p class="clone-options">You can clone with
+    <a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#" class="js-clone-selector" data-protocol="http">HTTPS</a>,
+    <a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#" class="js-clone-selector" data-protocol="subversion">Subversion</a>,
+  and <a href="https://help.github.com/articles/which-remote-url-should-i-use">other methods.</a>
+</p>
+
+
+  <a href="http://windows.github.com/" class="minibutton sidebar-button">
+    <span class="octicon octicon-device-desktop"></span>
+    Clone in Desktop
+  </a>
+
+                <a href="https://github.com/angular-ui/ui-router/archive/master.zip" class="minibutton sidebar-button" title="Download this repository as a zip file" rel="nofollow">
+                  <span class="octicon octicon-cloud-download"></span>
+                  Download ZIP
+                </a>
+            </div>
+        </div><!-- /.repository-sidebar -->
+
+        <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container="">
+          
+
+<div class="tabnav">
+  <ul class="tabnav-tabs">
+    <li><a href="https://github.com/angular-ui/ui-router/wiki" class="js-selected-navigation-item tabnav-tab" data-selected-links=" /angular-ui/ui-router/wiki">Home</a></li>
+    <li><a href="https://github.com/angular-ui/ui-router/wiki/_pages" class="js-selected-navigation-item tabnav-tab" data-selected-links=" /angular-ui/ui-router/wiki/_pages">Pages</a></li>
+    <li><a href="https://github.com/angular-ui/ui-router/wiki/_history" class="js-selected-navigation-item tabnav-tab" data-selected-links=" /angular-ui/ui-router/wiki/_history">History</a></li>
+  </ul>
+  <div class="tabnav-right">
+    <div class="tabnav-widget">
+      <a href="https://github.com/angular-ui/ui-router/wiki/_new" class="button minibutton primary js-new-wiki-page">New Page</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="wiki-wrapper" class="page">
+<div id="head">
+  <ul class="wiki-actions readability-extra">
+    <li class="gollum-minibutton"><a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views/_history" class="minibutton bigger action-page-history">
+       Page History
+     </a></li>
+    <li class="gollum-minibutton"><span class="js-zeroclipboard minibutton" data-clipboard-text="https://github.com/angular-ui/ui-router.wiki.git" data-copied-hint="copied!" title="Click to copy url to clipboard">Clone URL</span></li>
+  </ul>
+  <h1 class="instapaper_title">Multiple Named Views</h1>
+</div>
+<div id="wiki-content">
+  <div class="wrap has-rightbar">
+  <div id="wiki-rightbar" class="gollum-markdown-content readability-sidebar">
+    <p><strong>In-Depth Guide</strong></p>
+
+<ul>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Home">State Manager</a></li>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views">Nested States &amp; Nested Views</a></li>
+<li><a class="internal present" href="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/Multiple Named Views · angular-ui ui-router Wiki · GitHub.htm">Multiple Named Views</a></li>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/URL-Routing">URL Routing</a></li>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/The-Components">The Components</a></li>
+</ul><p><strong>Reference Docs</strong></p>
+
+<ul>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Quick-Reference">API Quick Reference</a></li>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions">FAQ</a></li>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Roadmap">Roadmap</a></li>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Backwards-Compatibility">Backwards Compatibility</a></li>
+<li><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Blog-Posts-%26-Forks">Blog Posts &amp; Forks</a></li>
+</ul>
+  </div>
+  <div id="wiki-body" class="gollum-markdown-content instapaper_body">
+    <div class="markdown-body">
+      <p><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views">◄ Back (Nested States &amp; Nested Views)</a> <code>&nbsp;  &nbsp;</code> <a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/URL-Routing">Next (URL Routing) ►</a></p>
+
+<p>You can name your views so that you can have more than one <code>ui-view</code> per template. Let's say you had an application state that needed to dynamically populate a graph, some table data and filters for the table like this:</p>
+
+<p><img src="./Multiple Named Views · angular-ui ui-router Wiki · GitHub_files/MultipleNamedViewsExample.png" alt="Multiple Named Views Mockup"></p>
+
+<p>When setting multiple views you need to use the <code>views</code> property on state. <code>views</code> is an object. </p>
+
+<h3>
+<a name="views-override-states-template-properties" class="anchor" href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#views-override-states-template-properties"><span class="octicon octicon-link"></span></a>Views override state's template properties</h3>
+
+<p>If you define a <code>views</code> object, your state's <code>templateUrl</code>, <code>template</code> and <code>templateProvider</code> will be ignored. So in the case that you need a parent layout of these views, you can define an abstract state that contain a template, and a child state under the layout state that contain the 'views' object.</p>
+
+<h3>
+<a name="example---name-matching" class="anchor" href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#example---name-matching"><span class="octicon octicon-link"></span></a>Example - Name Matching</h3>
+
+<p>The property keys on <code>views</code> should match your view names, like so:
+</p><div class="highlight"><pre><span class="c">&lt;!-- index.html --&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">ui-view=</span><span class="s">"filters"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">ui-view=</span><span class="s">"tabledata"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">ui-view=</span><span class="s">"graph"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+<div class="highlight"><pre><span class="nx">$stateProvider</span>
+  <span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s1">'report'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">views</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">'filters'</span><span class="o">:</span> <span class="p">{</span> <span class="p">...</span> <span class="nx">templates</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">,</span> <span class="nx">resolve</span><span class="p">,</span> <span class="nx">etc</span> <span class="p">...</span> <span class="p">},</span>
+      <span class="s1">'tabledata'</span><span class="o">:</span> <span class="p">{},</span>
+      <span class="s1">'graph'</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+</pre></div>
+Then each view in <code>views</code> can set up its own templates, controllers, and resolve data.
+<div class="highlight"><pre><span class="nx">$stateProvider</span>
+  <span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s1">'report'</span><span class="p">,{</span>
+    <span class="nx">views</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">'filters'</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">'report-filters.html'</span><span class="p">,</span>
+        <span class="nx">controller</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span> <span class="p">...</span> <span class="nx">controller</span> <span class="nx">stuff</span> <span class="nx">just</span> <span class="k">for</span> <span class="nx">filters</span> <span class="nx">view</span> <span class="p">...</span> <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s1">'tabledata'</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">'report-table.html'</span><span class="p">,</span>
+        <span class="nx">controller</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span> <span class="p">...</span> <span class="nx">controller</span> <span class="nx">stuff</span> <span class="nx">just</span> <span class="k">for</span> <span class="nx">tabledata</span> <span class="nx">view</span> <span class="p">...</span> <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s1">'graph'</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">'report-graph.html'</span><span class="p">,</span>
+        <span class="nx">controller</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span> <span class="p">...</span> <span class="nx">controller</span> <span class="nx">stuff</span> <span class="nx">just</span> <span class="k">for</span> <span class="nx">graph</span> <span class="nx">view</span> <span class="p">...</span> <span class="p">}</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+</pre></div>
+
+<h3>
+<a name="view-names---relative-vs-absolute-names" class="anchor" href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#view-names---relative-vs-absolute-names"><span class="octicon octicon-link"></span></a>View Names - Relative vs. Absolute Names</h3>
+
+<p>Behind the scenes, every view gets assigned an absolute name that follows a scheme of <code>viewname@statename</code>, where viewname is the name used in the view directive and state name is the state's absolute name, e.g. contact.item. You can also choose to write your view names in the absolute syntax. </p>
+
+<p>For example, the previous example could also be written as such:</p>
+
+<div class="highlight"><pre><span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s1">'report'</span><span class="p">,{</span>
+  <span class="nx">views</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">'filters@'</span><span class="o">:</span> <span class="p">{</span> <span class="p">},</span>
+    <span class="s1">'tabledata@'</span><span class="o">:</span> <span class="p">{</span> <span class="p">},</span>
+    <span class="s1">'graph@'</span><span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+Notice that the view names are now specified as absolute names, as opposed to the relative name. It is targeting the 'filters', 'tabledata', and 'graph' views located in the root unnamed template. Since its unnamed, there is nothing following the '@'. The root unnamed template is your index.html. 
+
+<p>Absolute naming lets us do some powerful view targeting. <a href="https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views#scope-inheritance-by-view-hierarchy-only">Remember! With power comes responsibility</a>. Let's assume we had several templates set up like this (this example is not realistic, its just to illustrate view targeting): </p>
+
+<div class="highlight"><pre><span class="c">&lt;!-- index.html (root unnamed template) --&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">ng-app</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ui-view</span><span class="nt">&gt;&lt;/div&gt;</span> <span class="c">&lt;!-- contacts.html plugs in here --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ui-view=</span><span class="s">"status"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="c">&lt;!-- contacts.html --&gt;</span>
+<span class="nt">&lt;h1&gt;</span>My Contacts<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ui-view</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ui-view=</span><span class="s">"detail"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="c">&lt;!-- contacts.detail.html --&gt;</span>
+<span class="nt">&lt;h1&gt;</span>Contacts Details<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ui-view=</span><span class="s">"info"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+Let's look at the various views you could target from within the contacts.detail state. Remember that if an <code>@</code> is used then the view path is considered absolute:
+<div class="highlight"><pre><span class="nx">$stateProvider</span>
+  <span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s1">'contacts'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="c1">// This will get automatically plugged into the unnamed ui-view </span>
+    <span class="c1">// of the parent state template. Since this is a top level state, </span>
+    <span class="c1">// its parent state template is index.html.</span>
+    <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">'contacts.html'</span>   
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">state</span><span class="p">(</span><span class="s1">'contacts.detail'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">views</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">////////////////////////////////////</span>
+        <span class="c1">// Relative Targeting             //</span>
+        <span class="c1">// Targets parent state ui-view's //</span>
+        <span class="c1">////////////////////////////////////</span>
+
+        <span class="c1">// Relatively targets the 'detail' view in this state's parent state, 'contacts'.</span>
+        <span class="c1">// &lt;div ui-view='detail'/&gt; within contacts.html</span>
+        <span class="s2">"detail"</span> <span class="o">:</span> <span class="p">{</span> <span class="p">},</span>            
+
+        <span class="c1">// Relatively targets the unnamed view in this state's parent state, 'contacts'.</span>
+        <span class="c1">// &lt;div ui-view/&gt; within contacts.html</span>
+        <span class="s2">""</span> <span class="o">:</span> <span class="p">{</span> <span class="p">},</span> 
+
+        <span class="c1">///////////////////////////////////////////////////////</span>
+        <span class="c1">// Absolute Targeting using '@'                      //</span>
+        <span class="c1">// Targets any view within this state or an ancestor //</span>
+        <span class="c1">///////////////////////////////////////////////////////</span>
+
+        <span class="c1">// Absolutely targets the 'info' view in this state, 'contacts.detail'.</span>
+        <span class="c1">// &lt;div ui-view='info'/&gt; within contacts.detail.html</span>
+        <span class="s2">"info@contacts.detail"</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+
+        <span class="c1">// Absolutely targets the 'detail' view in the 'contacts' state.</span>
+        <span class="c1">// &lt;div ui-view='detail'/&gt; within contacts.html</span>
+        <span class="s2">"detail@contacts"</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+
+        <span class="c1">// Absolutely targets the unnamed view in parent 'contacts' state.</span>
+        <span class="c1">// &lt;div ui-view/&gt; within contacts.html</span>
+        <span class="s2">"@contacts"</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+
+        <span class="c1">// absolutely targets the 'status' view in root unnamed state.</span>
+        <span class="c1">// &lt;div ui-view='status'/&gt; within index.html</span>
+        <span class="s2">"status@"</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+
+        <span class="c1">// absolutely targets the unnamed view in root unnamed state.</span>
+        <span class="c1">// &lt;div ui-view/&gt; within index.html</span>
+        <span class="s2">"@"</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span> 
+  <span class="p">});</span>
+</pre></div>
+
+<p>You can see how this ability to not only set multiple views within the same state but ancestor states could become a veritable playground for developer :).</p>
+
+<h3>
+<a name="view-loaded-event" class="anchor" href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#view-loaded-event"><span class="octicon octicon-link"></span></a>View Loaded Event</h3>
+
+<p>Once the view is loaded (DOM is rendered), the '$scope' of the view emits an event - '$viewContentLoaded', that can be captured by the view's scope and any parent of it until the '$rootScope'. You can use this event to perform actions on the view once the view content has been loaded.</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">viewController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span>
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s1">'$viewContentLoaded'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'View Content Loaded'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+
+<p><a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views">◄ Back (Nested States &amp; Nested Views)</a> <code>&nbsp;  &nbsp;</code> <a class="internal present" href="https://github.com/angular-ui/ui-router/wiki/URL-Routing">Next (URL Routing) ►</a></p>
+    </div>
+  </div>
+  <div id="wiki-footer">
+    <div id="gollum-footer-content" class="gollum-markdown-content">
+      <p>Use the table of contents to the top right to navigate to other wiki sections.</p>
+    </div>
+  </div>
+  </div>
+
+</div>
+<div id="gollum-footer">
+  <p id="last-edit">
+    Last edited by Tim Kindberg, <time class="js-relative-date" datetime="2013-07-26T20:12:44-07:00" title="2013-07-26 20:12:44">2 days ago</time>
+  </p>
+</div>
+</div>
+
+
+        </div>
+
+      </div><!-- /.repo-container -->
+      <div class="modal-backdrop"></div>
+    </div><!-- /.container -->
+  </div><!-- /.site -->
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer">
+    <ul class="site-footer-links right">
+      <li><a href="https://status.github.com/">Status</a></li>
+      <li><a href="http://developer.github.com/">API</a></li>
+      <li><a href="http://training.github.com/">Training</a></li>
+      <li><a href="http://shop.github.com/">Shop</a></li>
+      <li><a href="https://github.com/blog">Blog</a></li>
+      <li><a href="https://github.com/about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com/">
+      <span class="mega-octicon octicon-mark-github"></span>
+    </a>
+
+    <ul class="site-footer-links">
+      <li>© 2013 <span title="0.17885s from fe4.rs.github.com">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy">Privacy</a></li>
+        <li><a href="https://github.com/security">Security</a></li>
+        <li><a href="https://github.com/contact">Contact</a></li>
+    </ul>
+  </div><!-- /.site-footer -->
+</div><!-- /.container -->
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-fullscreen-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="js-fullscreen-contents" placeholder="" data-suggester="fullscreen_suggester"></textarea>
+          <div class="suggester-container">
+              <div class="suggester fullscreen-suggester js-navigation-container" id="fullscreen_suggester" data-url="/angular-ui/ui-router/suggestions/commit">
+              </div>
+          </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#" class="exit-fullscreen js-exit-fullscreen tooltipped leftwards" original-title="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#" class="theme-switcher js-theme-switcher tooltipped leftwards" original-title="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#" class="octicon octicon-remove-close close ajax-error-dismiss"></a>
+      Something went wrong with that request. Please try again.
+    </div>
+
+    
+  
+
+
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container" data-clipboard-ready="true" style="position: absolute; left: -9999px; top: -9999px; width: 15px; height: 15px; z-index: 9999; " original-title="">      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%" height="100%">         <param name="movie" value="https://github.global.ssl.fastly.net/flash/ZeroClipboard.swf?nocache=1375090101197">         <param name="allowScriptAccess" value="always">         <param name="scale" value="exactfit">         <param name="loop" value="false">         <param name="menu" value="false">         <param name="quality" value="best">         <param name="bgcolor" value="#ffffff">         <param name="wmode" value="transparent">         <param name="flashvars" value="trustedDomain=github.com">         <embed src="https://github.global.ssl.fastly.net/flash/ZeroClipboard.swf?nocache=1375090101197" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="trustedDomain=github.com" scale="exactfit">                </object></div></body></html>
