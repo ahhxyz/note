@@ -1,0 +1,254 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:12px;
+	line-height:150%;
+	color:#393939;
+}
+li{
+	list-style-type:none;
+}
+h1{
+	font-size:12px;
+	font-weight:200;
+	line-height:20px;
+	height:24px;
+}
+h1 a{
+	display:block;
+	width:87px;
+	height:24px;
+	line-height:24px;
+	color:#fff;
+	text-indent:-9999px;
+}
+a{
+	text-decoration:none;
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.cl{
+	clear:both;
+}
+img{
+	border:none;
+}
+#border{
+	border:1px solid #c0dade;
+	overflow:hidden;
+}
+#header{
+
+}
+#dataArea{
+}
+#userInfo{
+	height:64px;
+	padding:10px 0 0 6px;
+	color:#383a39;
+	overflow:hidden;
+}
+.userIco{
+	float:left;
+}
+.userInfo strong{
+	font-size:14px;
+	font-family:tahoma;
+}
+.userIco img{
+	margin-left:4px;
+	border:1px solid #d2d2d2;
+}
+.userInfo{
+	position:absolute;
+	left:70px;
+}
+.accinfo {
+    float:left
+}
+#listenArea{
+	padding-top:12px;
+	*padding-top:6px;	
+	_padding-top:6px;
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+}
+#listenArea .canlisten{
+_ margin-top:5px;
+}
+#hisFans{
+	height:30px;
+	overflow:hidden;
+	line-height:30px;
+	padding:0 23px 0 7px;
+}
+
+#fansList li{
+	text-align:center;
+	width:75px;
+	height:80px;
+	padding-bottom:10px;
+	overflow:hidden;
+	float:left;
+}
+#fansList li p{
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+#fansList li img{
+	border:1px solid #d2d2d2;
+	padding:2px;
+}
+
+#tweetArea{
+	padding:6px;
+}
+#tweetArea li{
+	padding:8px 2px 0 2px;
+	line-height:160%;
+	word-break:break-all;word-wrap:break-word; 
+}
+#tweetArea li a{
+	color:#000000;
+}
+#tweetArea li .source{
+	padding:4px 5px;
+	margin:0 5px;
+}
+.tweetinfo{
+	height:auto;
+	padding:3px;
+}
+.tweetinfo span.l{
+	float:left;
+	display:block;
+}
+.tweetinfo span.r{
+	display:block;
+	float:right;
+	padding-left:16px;
+	white-space:nowrap;
+	background:url(http://mat1.gtimg.com/app/vt/images/show/act.gif) no-repeat 0 -32px;
+}
+.canlisten{
+	display:block;
+	height:26px;
+	margin-top:-8px;
+	padding-left:34px;
+	line-height:26px;
+	background:url(http://mat1.gtimg.com/app/vt/images/show/act.gif) no-repeat 0 0;
+}
+.addlisten{
+	width:78px;
+	height:21px;
+	display:block;
+	background:url(http://mat1.gtimg.com/app/vt/images/show/listen.png) no-repeat;
+	margin-top:-3px;
+	*margin-top:3px;
+	_margin-top:3px;
+}
+.imgico{
+	background:url(http://mat1.gtimg.com/app/vt/images/show/sico.png) no-repeat;
+	margin:2px 0 0 4px;
+	width:16px;
+	height:14px;
+}
+.imgshow img{
+	padding:3px;
+}
+.fcgray{
+	color:#a3a3a3;
+}
+.toppat{
+	position:absolute;margin-left:25px;
+	width:37px;
+	height:6px;
+	/*
+	margin-top:-5px;
+	margin-top:-4px\9;
+	*/
+}
+.toppat b,.toppat i{position:absolute;margin-top:-9px;_ margin-top:-8px;font-style:normal;text-align:center;}
+.toppat i{color:#fff;padding-top:1px;}
+#tweetList{
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+.errorMsg{
+	background:url(http://mat1.gtimg.com/app/vt/images/show/error.png) no-repeat center top;
+	width:296px;
+	height:252px;
+	padding-top:292px;
+	text-align:center;
+	font-size:14px;
+}
+.errorMsg a{
+	color:#0a7da3;
+}
+.vip{
+	background:url(http://mat1.gtimg.com/app/vt/images/show/bgs.gif) no-repeat -58px -107px;
+	margin-top:-2px;
+	width:15px;
+	height:15px;
+}
+.otips{
+	position:absolute;
+	margin-top:-64px;
+	width;18px;
+	height:18px;
+}
+.otips a{
+	display:block;
+	width:18px;
+	height:18px;
+	background:url(http://mat1.gtimg.com/app/vt/images/show/tips.gif) no-repeat;
+}
+.sendbox{
+	margin:0 10px;padding:10px 0 0;
+}
+.sendbox textarea{
+	width:100%;
+	height:68px;
+	margin-left:-1px;
+	overflow:auto;
+	border-width:1px;
+	border-style:solid;
+	font-size:12px;
+
+}
+.sendbox label{
+	color:#999;
+	font-size:12px;
+	margin-right:10px;
+	vertical-align:bottom;
+}
+.sendbox strong{
+	font-size:16px;
+	font-family:Verdana;
+	vertical-align:bottom;
+}
+.sendbox .control{
+	padding:5px 0;
+	text-align:right;
+}
+.button{
+	width:67px;
+	height:21px;
+	line-height:20px;
+	display:inline-block;
+	border:0;
+	cursor:pointer;
+	color:#fff;
+	* display:inline;
+	zoom:1;
+	text-align:center;
+}
+a.button{color:#fff;}/*  |xGv00|c0c19a120d702320126c9cbf2e6934aa */

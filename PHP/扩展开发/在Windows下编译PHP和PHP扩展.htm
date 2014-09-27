@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://www.techotaku.net/2013/09/build-php-and-extension-for-windows/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>在Windows下编译PHP和PHP扩展</title>
+    <meta name="description" content="残影 / Ian Li 的独立博客，偶尔写一些关于生活、编程、互联网、科幻奇幻的文字。 本文以编译PHP 5.5.3和PHP扩展test_helpers为例对在Windows下编译PHP和PHP扩展进行说明。">
+    <meta name="author" content="残影">
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://www.techotaku.net/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="./在Windows下编译PHP和PHP扩展_files/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="./在Windows下编译PHP和PHP扩展_files/pygments.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- atom & rss feed -->
+    <link href="http://www.techotaku.net/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="http://www.techotaku.net/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+    <link href="http://www.techotaku.net/sitemap.txt" rel="sitemap" type="application/rss+xml" title="Sitemap">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  <script type="text/javascript" async="" src="./在Windows下编译PHP和PHP扩展_files/ga.js"></script><script type="text/javascript" async="" src="./在Windows下编译PHP和PHP扩展_files/embed.js" charset="UTF-8"></script><script>var old = null;function asplay_top(c){var audio = document.createElement("audio");if(audio != null && audio.canPlayType && audio.canPlayType("audio/mpeg")){if(old){old.pause();}audio.src = c;old = audio;audio.play();}}</script><link type="text/css" rel="stylesheet" href="./在Windows下编译PHP和PHP扩展_files/embed.default.css"></head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="http://www.techotaku.net/">Tech Otaku</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://www.techotaku.net/categories.html">分类</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://www.techotaku.net/archive.html">存档</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://www.techotaku.net/tags.html">标签</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+      <a href="https://github.com/techotaku" title="Fork me on GitHub"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+      <div class="content">
+        
+<div class="page-header">
+  <h1>在Windows下编译PHP和PHP扩展 </h1>
+</div>
+
+<div class="row-fluid">
+  <div class="span8">
+    <p>在Windows下给PHP装扩展的难度不怎么好衡量。要说难的话，流行的扩展一般都有编译好的库，下回来用就是，方便的很；要说简单的话，下载扩展的PHP版本、线程安全设置、调试设置、编译器版本都要符合才能用，然后从VC11（VS 2012）开始PHP 5.4、5.5又有了32位和64位的分别……就算像Xdebug这样的流行扩展，也得防着一不留神下错了文件——当然，这只是略麻烦一点，不过对于一些不怎么流行的扩展，在Windows上安装还真是不简单的活：嗯，最麻烦的就是，你得自己编译。    </p>
+
+<p>在Windows下编译PHP和扩展比*nix下麻烦很多。在*nix下，你需要的只是“phpize”、“./configure --enable-XXX”、“make”——在Windows下可没有phpize这么好用的东西。    </p>
+
+<h3>需要的文件</h3>
+
+<ul>
+<li>编译器。这里以VC++ 11（Visual Studio 2012）为例，它可以编译PHP 5.5（官方支持）和5.4（可用）。对应地，VC++ 9（Visual Studio 2008 SP1，需要Windows SDK 6.1）可以编译PHP 5.4（官方支持）和5.3（官方支持）。PHP的官方Wiki上有<a href="https://wiki.php.net/internals/windows/compiler">详细的编译器支持列表</a>（英文）。<br></li>
+<li>PHP源代码。推荐从<a href="http://windows.php.net/download/">官网</a>下载。<br></li>
+<li>PHP SDK。需要从<a href="http://windows.php.net/downloads/php-sdk/">这里</a>下载两个压缩包：<a href="http://windows.php.net/downloads/php-sdk/deps-5.5-vc11-x86.7z">deps-5.5-vc11-x86.7z</a>（下载对应版本的依赖包）和 <a href="http://windows.php.net/downloads/php-sdk/php-sdk-binary-tools-20110915.zip">php-sdk-binary-tools-20110915.zip</a>（sdk，有更新的文件可以下新的）。</li>
+<li>PHP扩展的源码和依赖文件，如果你需要编译PHP扩展。</li>
+</ul>
+
+<h3>编译步骤</h3>
+
+<h4>1. 准备工作文件夹</h4>
+
+<p>把压缩包php-sdk-binary-tools-20110915.zip的内容解压到一个文件夹，例如 D:\php-sdk\。<br>
+打开“VS2012 x86 Native Tools Command Prompt”，cd到刚刚建立的文件夹，执行以下命令：  </p>
+
+<div class="highlight"><pre><code class="bat">bin\phpsdk_setvars.bat
+bin\phpsdk_buildtree.bat phpdev
+</code></pre></div>
+  
+
+<p>把D:\php-sdk\phpenv\下的vc9文件夹复制一份，重命名为vc11。（不复制直接改名也可以，或者直接在vc9里面编译应该也没问题。）现在你应该有了一个类似这样的文件夹结构：  </p>
+
+<div class="highlight"><pre><code class="bat">D:\php-sdk\
+ |--bin\
+ |--phpdev\
+ |   |--vc<span class="m">6</span>\
+ |   |--vc<span class="m">8</span>\
+ |   |--vc<span class="m">9</span>\
+ |   |   |--x<span class="m">64</span>\
+ |   |   |--x<span class="m">86</span>\
+ |   |       |--deps\
+ |   |--vc<span class="m">11</span>\
+ |       |--x<span class="m">64</span>\ 
+ |       |--x<span class="m">86</span>\
+ |           |--deps\
+ |               |--bin\
+ |               |--include\
+ |               |--lib\
+ |--script\
+ |--share\
+</code></pre></div>
+  
+
+<p>把依赖包deps-5.5-vc11-x86.7z解压到D:\php-sdk\phpenv\vc11\x86\，将其中的deps文件夹与现有的deps文件夹合并。这个文件夹用来放置编译PHP和扩展需要的依赖文件，包括库文件、头文件甚至是依赖的二进制文件。<br>
+把php的源代码压缩包的内容解压到D:\php-sdk\phpenv\vc11\x86\，得到一个类似D:\php-sdk\phpdev\vc11\x86\php-5.5.3-src\的文件夹。  </p>
+
+<h4>2. 生成configure脚本</h4>
+
+<p>cd到D:\php-sdk\phpdev\vc11\x86\php-5.5.3-src\，执行以下命令：  </p>
+
+<div class="highlight"><pre><code class="bat">buildconf
+</code></pre></div>
+  
+
+<h4>3. 配置编译选项</h4>
+
+<p>使用--help查看可用的选项。下面是一个我用的开启了大多数PHP自带扩展的命令。</p>
+
+<div class="highlight"><pre><code class="bat">configure --help
+configure --enable-cli-win<span class="m">32</span> --with-bz<span class="m">2</span> --with-curl --with-dba --enable-fileinfo --with-gettext --with-gmp --with-ldap --enable-mbstring --enable-mbregex --with-mcrypt --with-openssl --with-pgsql --enable-sockets --with-sqlite<span class="m">3</span> --with-config-file-scan-dir --with-tidy --enable-exif --with-mysql --with-mysqli --enable-pdo --with-pdo-mysql --with-pdo-pgsql --with-pdo-sqlite --enable-soap --with-xmlrpc --with-xsl
+</code></pre></div>
+  
+
+<h4>4. 编译PHP</h4>
+
+<p>运行下面两条命令，编译PHP、生成zip压缩包。</p>
+
+<div class="highlight"><pre><code class="bat">nmake
+nmake snap
+</code></pre></div>
+  
+
+<p>最后在D:\php-sdk\phpdev\vc11\x86\php-5.5.3-src\Release_TS\下得到一个压缩包php-5.5.3-Win32-VC11-x86.zip，即是我们编译并打包好的PHP。把这个压缩包解压到别处即可开始使用；如果运行时提示需要某dll，一般在D:\php-sdk\phpdev\vc11\x86\deps\bin\下面可以找到它。<br>
+我按照上面的配置参数，打包了一份可用的PHP 5.3.3，可以到<a href="http://sdrv.ms/18Hgn5K">我的SkyDrive</a>下载。相关的配置命令和phpinfo可以在<a href="https://gist.github.com/techotaku/6460334">这里</a>查看。  </p>
+
+<h4>5. 编译PHP扩展</h4>
+
+<p>PHP扩展的编译方式和PHP的编译方式大同小异。<br>
+首先确定扩展的源代码和依赖文件已经正确放在了相关文件夹。扩展的源代码文件夹需要放在D:\php-sdk\phpdev\vc11\x86\php-5.5.3-src\ext\下，依赖文件的位置和编译PHP时相同。<br>
+然后清理一下上次编译的工作文件夹，因为我们要调整配置选项（--force选项可以不带）。  </p>
+
+<div class="highlight"><pre><code class="bat">nmake clean
+buildconf --force
+configure --help
+</code></pre></div>
+  
+
+<p>这次我要编译的是PHP扩展<a href="https://github.com/techotaku/php-test-helpers">test_helpers</a>，一个添加了一些用于测试的函数的扩展。比如说，通过这个扩展，你可以重载exit()、die()系统函数和new关键字，在为一些遗留代码编写测试时非常好用。<br>
+<img src="./在Windows下编译PHP和PHP扩展_files/php-ext-build-config.png" alt="选项 --enable-test_helpers" title="编译选项里的--enable-test_helpers"><br>
+可以看到，buildconf之后，configure --help输出的选项里已经有了--enable-test_helpers。  </p>
+
+<div class="highlight"><pre><code class="bat">configure --disable-all --enable-cli --enable-test_helpers<span class="o">=</span>shared
+nmake
+</code></pre></div>
+  
+
+<p>我禁用了所有的其他扩展，只保留了命令行（CLI）的SAPI。标记为shared表示编译动态链接库，与static相对。<br>
+在configure输出的末尾是当前编译配置的状态：<br>
+<img src="./在Windows下编译PHP和PHP扩展_files/php-ext-build-config-status.png" alt="编译配置的状态" title="当前编译配置的状态"><br>
+编译出来的文件同样在Release_TS文件夹下。和我们需要的扩展有关的是四个文件：php_test_helpers.dll，php_test_helpers.dll.res，php_test_helpers.exp和php_test_helpers.lib。<br>
+复制php_test_helpers.dll到你的PHP的ext目录，修改你的php.ini，添加extension=php_test_helpers.dll，再执行一下php -m看一下加载的模块：<br>
+<img src="./在Windows下编译PHP和PHP扩展_files/php-modules.png" alt="PHP当前加载的扩展" title="PHP当前加载的扩展"><br>
+可以看出……test_helpers已经加载了。  </p>
+
+<p><em>这儿有个问题，这样编译出来的php_test_helpers.dll不能作为Zend Extension被加载——在Ubuntu下是可以的，我还没搞清楚原因，调查中……有了结果我再来更新这段。根据作者Sebastian Bergmann（牛人啊，也是phpunit的作者）的<a href="https://github.com/php-test-helpers/php-test-helpers#notes">说明</a>，由于都重载了ZEND_NEW的关系，test_helpers和Xdebug（等类似扩展）有些兼容问题，workaround是作为Zend Extension并且在Xdebug之后加载。下图展示了在Ubuntu上开启了workaround和在Windows上未开启workaround的phpinfo()信息。</em><br>
+<img src="./在Windows下编译PHP和PHP扩展_files/test_helpers-phpinfo-ubuntu.png" alt="在Ubuntu上开启了workaround的phpinfo()信息" title="在Ubuntu上开启了workaround的phpinfo()信息"><br>
+<img src="./在Windows下编译PHP和PHP扩展_files/test_helpers-phpinfo-win.png" alt="在Windows上未开启workaround的phpinfo()信息" title="在Windows上未开启workaround的phpinfo()信息"><br>
+我打包了一份编译出来的test_helpers，可以到<a href="http://sdrv.ms/18HjhHE">我的SkyDrive</a>下载（为PHP 5.5-线程安全-VC11-非调试发布版本-32位而编译，其他版本不保证可用）。下载之后可以跑一下我的<a href="https://github.com/techotaku/TestHelpers.php">TestHelpers.php项目</a>里面的示例和单元测试来验证。  <em>（由于上文所述的原因，执行单元测试时请禁用代码覆盖率检测和Xdebug。）</em>  </p>
+
+<h4>参考</h4>
+
+<ul>
+<li><a href="https://wiki.php.net/internals/windows/stepbystepbuild">PHP Wiki: Build your own PHP on Windows</a>（英文）<br></li>
+</ul>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="http://www.techotaku.net/2013/08/change-comments-provider-to-duoshuo" title="改用多说（duoshuo）的评论服务">← 上一篇</a></li>
+      
+        <li><a href="http://www.techotaku.net/archive.html">存档</a></li>
+      
+        <li class="next"><a href="http://www.techotaku.net/2013/09/travis-ci-phpinfo" title="Travis-CI的PHP环境信息">下一篇 →</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-thread-key="/2013/09/build-php-and-extension-for-windows" data-title="在Windows下编译PHP和PHP扩展" data-image="http://www.techotaku.net/files/2013/09/php-ext-build-config-status.png" data-url="http://www.techotaku.net/2013/09/build-php-and-extension-for-windows" id="ds-thread"><div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://techotaku.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://techotaku.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://techotaku.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a href="http://techotaku.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://techotaku.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://techotaku.duoshuo.com/login/netease/" rel="nofollow" class="ds-service-link ds-netease">网易</a></li><li><a href="http://techotaku.duoshuo.com/login/sohu/" rel="nofollow" class="ds-service-link ds-sohu">搜狐</a></li><li><a href="http://techotaku.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://techotaku.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./在Windows下编译PHP和PHP扩展_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="1320731168261275663">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="53bfe87a441f9"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc ds-current">最新</a><a class="ds-order-asc">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">1</span>条评论</a></li></ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="1320731168261275650"><div class="ds-post-self" data-post-id="1320731168261275650" data-thread-id="1320731168261275663" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./在Windows下编译PHP和PHP扩展_files/noavatar_default.png" alt="zx013"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">zx013</span></div><p>编译选项似乎有问题，我用下面的编译选项就可以了<br>
+cscript /nologo configure.js "--enable-cli" "--enable-snapshot-build" "--enable-debug-pack" "--without-mssql" "--without-pdo-mssql" "--without-pi3web" "--enable-object-out-dir=../obj/" "--enable-com-dotnet=shared" "--with-mcrypt=static" "--disable-static-analyze"</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2014-04-04T14:14:15+08:00" title="2014年4月4日 下午2:14:15">4月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">TECH OTAKU正在使用多说</a></p></div></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"techotaku"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+<!-- Duoshuo Comment END -->
+
+
+
+  </div>
+  
+  <div class="span4">
+    <h4>发布于</h4>
+    <div class="date"><span>03 September 2013</span></div>
+
+  
+  <br>
+    <h4>所属分类</h4>
+    <ul class="tag_box">
+  
+  
+
+
+  
+     
+    	<li><a href="http://www.techotaku.net/categories.html#技术-ref">
+    		技术 <span>9</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+   
+  
+  
+  <br>
+  <h4>标签</h4>
+    <ul class="tag_box">
+    
+    
+
+
+  
+     
+    	<li><a href="http://www.techotaku.net/tags.html#PHP-ref">PHP <span>3</span></a></li>
+    
+  
+
+
+
+    </ul>
+  
+
+  
+<div class="nav link">
+	<br>
+	<h4>链接</h4>
+	<ul>
+	
+		<li class="links"><a href="http://bulaoge.net/?ooohhhrrr" target="_blank" title="梳子的不老歌">月牙笑</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?runaway0225" target="_blank" title="小羽的不老歌">Away From The Runway</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?qiahao" target="_blank" title="恰好的不老歌：夜深忽梦少年事 惟梦闲人不梦君">沙尘国</a></li>		
+	
+		<li class="links"><a href="http://ranka.diandian.com/" target="_blank" title="且把风流唱少年。">纯子</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?wanhu" target="_blank" title="万户的不老歌">万物生长</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?lich" target="_blank" title="巫妖的不老歌">妖间一壶酒</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?alida" target="_blank" title="傅临春的不老歌">南阵</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?kenn" target="_blank" title="胭脂王的不老歌">无限回廊</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?jzjhz" target="_blank" title="岸、铁刀的不老歌">一生之萌</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?moonlightshadow" target="_blank" title="天女葵的不老歌">月栖湖</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?suye" target="_blank" title="夙夜的不老歌">摇夜生姿</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?sukysis" target="_blank" title="K的不老歌">@幸运女神在微笑</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?neville" target="_blank" title="Neville的不老歌">我的天主 给我以平庸吧</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?moshi" target="_blank" title="西苓的不老歌">大鱼·海棠</a></li>		
+	
+		<li class="links"><a href="http://bulaoge.net/?stupymu" target="_blank" title="木瓜的不老歌">戒</a></li>		
+	
+		<li class="links"><a href="http://www.niejiaoyue.com/" target="_blank" title="Joe.N的博客：日光之下，并无新事。">Joe.N</a></li>		
+	
+		<li class="links"><a href="http://blog.sina.com.cn/ceasa" target="_blank" title="城堡大师、李多的博客">城堡谒见室</a></li>		
+	
+	</ul>
+</div>
+ 
+  
+<div class="nav link">
+	<h4>Repositories</h4>
+	<ul>
+	
+		<li class="links"><a href="https://travis-ci.org/techotaku/dbcha" title="Build Status on Travis CI" target="_blank"><img src="./在Windows下编译PHP和PHP扩展_files/dbcha.png" alt="Build Status"></a>&nbsp;<a href="https://github.com/techotaku/dbcha" target="_blank">dbcha</a></li>		
+	
+		<li class="links"><a href="https://travis-ci.org/techotaku/YAUC.php" title="Build Status on Travis CI" target="_blank"><img src="./在Windows下编译PHP和PHP扩展_files/YAUC.php.png" alt="Build Status"></a>&nbsp;<a href="https://github.com/techotaku/YAUC.php" target="_blank">YAUC.php</a></li>		
+	
+		<li class="links"><a href="https://travis-ci.org/techotaku/Wechat-SDK.php" title="Build Status on Travis CI" target="_blank"><img src="./在Windows下编译PHP和PHP扩展_files/Wechat-SDK.php.png" alt="Build Status"></a>&nbsp;<a href="https://github.com/techotaku/Wechat-SDK.php" target="_blank">Wechat-SDK.php</a></li>		
+	
+		<li class="links"><a href="https://travis-ci.org/techotaku/TestHelpers.php" title="Build Status on Travis CI" target="_blank"><img src="./在Windows下编译PHP和PHP扩展_files/TestHelpers.php.png" alt="Build Status"></a>&nbsp;<a href="https://github.com/techotaku/TestHelpers.php" target="_blank">TestHelpers.php</a></li>		
+	
+	</ul>
+</div>
+ 
+  </div>
+</div>
+
+      </div>
+
+      <footer>
+        <p>© 2014 残影&nbsp;&nbsp;<a href="http://www.techotaku.net/atom.xml" target="_blank">Atom</a> <br>
+          With help from <a href="http://jekyllbootstrap.com/" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a> <br>
+          Hosted on <a href="http://pages.github.com/" target="_blank">Github Pages</a>
+          <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2380596782548c47546073b94fc03c83' type='text/javascript'%3E%3C/script%3E"));
+          </script><script src="./在Windows下编译PHP和PHP扩展_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=2380596782548c47546073b94fc03c83" target="_blank"><img border="0" src="./在Windows下编译PHP和PHP扩展_files/21.gif" width="20" height="20"></a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-16583196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  
+
+
+</body></html>

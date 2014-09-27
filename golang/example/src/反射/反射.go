@@ -15,9 +15,15 @@ func (u User) Hello() {
 }
 func main() {
 	var u User
-	t := reflect.TypeOf(u)
-	for i := 0; i < t.NumMethod(); i++ {
-		m := t.Method(i)
-		fmt.Println(m.Type)
-	}
+
+	//t := reflect.TypeOf(u)
+	v := reflect.ValueOf(u)
+	f := v.FieldByName("id")
+	fmt.Printf("%v\n", f.Uint())
+	/*
+		for i := 0; i < t.NumMethod(); i++ {
+			m := t.Method(i)
+			fmt.Println(m.)
+		}
+	*/
 }

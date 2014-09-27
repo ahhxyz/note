@@ -17,7 +17,8 @@ func (u User) Hello(name string) {
 func main() {
 	u := User{12, "甘延寿", 30}
 	v := reflect.ValueOf(u)
-	mv := v.MethodByName("Hello")
-	args := []reflect.Value{reflect.ValueOf("陈汤")} //参数必须是一个slice
-	mv.Call(args)
+	mv := v.MethodByName("ello")
+	fmt.Printf("%v\n", mv.IsValid())
+	//args := []reflect.Value{reflect.ValueOf("陈汤")} //参数必须是一个slice
+	//mv.Call(args)
 }

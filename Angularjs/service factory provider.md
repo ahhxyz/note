@@ -1,0 +1,1 @@
+Services都是单例的，就是说在一个应用（ng-app）中，每一个服务对象只会被实例化一次。 Provider的基本原则就是通过实现$get方法来在应用中注入单例，使用的时候得到的sayHello就是$get执行后的结果。factory其实是对provider的进一步封装，而service则是对factory的进一步封装。factroy和provider最大的区别是，factory还可以注入其他服务如$window，而service则不能。
