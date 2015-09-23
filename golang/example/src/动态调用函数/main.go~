@@ -1,0 +1,11 @@
+package main
+
+import (
+	"dynamicFunc/test"
+)
+
+func main() {
+	funcs := map[string]func(in interface{}){"demo": test.Demo}
+	funcs["demo"]("hi")
+
+}

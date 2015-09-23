@@ -1,0 +1,14 @@
+package main
+import(
+    "fmt"
+    //"reflect"
+)
+type User struct{
+	id int
+	name string
+}
+func main() {
+    var u1,u2 *User
+    //U.id=2
+    fmt.Println(_U)
+}

@@ -1,0 +1,15 @@
+package main
+
+import (
+	"dynamicFunc/test"
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	funcs := map[string]interface{}{"demo": test.Demo}
+	v := reflect.ValueOf(funcs["demo"])
+	in := []reflect.Value{reflect.ValueOf("动态调用其它包中的函数")}
+	v.Call(in)
+
+}

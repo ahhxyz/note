@@ -1,0 +1,25 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"reflect"
+)
+
+func main() {
+	fInfo, err := os.Stat("demo.txt")
+	if err == nil {
+		info := fInfo.Sys()
+		v := reflect.ValueOf(info).Elem()
+		/*		for i := 0; i < v.NumField(); i++ {
+					m := v.Field(i)
+					fmt.Println(m.Uint())
+				}
+		*/
+		Atim := v.FieldByName("Atim")
+		Mtim := v.FieldByName("Mtim")
+		Ctim := v.FieldByName("Ctim")
+		//fmt.Printf("%s\n%s\n", v.Field(13).Field(0).Int(), v.Field(12).Field(1).Int())
+		fmt.Printf("%s\n%s\n", Atim.Field(0).Int(), Atim.Field(1).Int())
+	}
+}

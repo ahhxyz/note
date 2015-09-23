@@ -1,0 +1,23 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"reflect"
+)
+
+func main() {
+	fInfo, err := os.Stat("demo.txt")
+	if err == nil {
+		info := fInfo.Sys()
+		v := reflect.ValueOf(info).Elem()
+		Atim := v.FieldByName("Atim")
+		Mtim := v.FieldByName("Mtim")
+		Ctim := v.FieldByName("Ctim")
+		fmt.Printf("最后访问时间：%s\n修改时间：%s\n创建时间：%s\n", Atim.Field(0).Int(), Mtim.Field(0).Int(), Ctim.Field(0).Int())
+		if Atim.CanSet() {
+			Atim.Field(0).SetInt(1380000000)
+		}
+		fmt.Printf("最后访问时间：%s\n", Atim.Field(0).Int())
+	}
+}

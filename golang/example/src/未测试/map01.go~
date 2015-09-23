@@ -1,0 +1,15 @@
+package main
+
+import "fmt"
+
+func main() {
+	m := map[string]interface{}{
+		"info01": "陈汤",
+		"info02": "甘延寿",
+		"info": map[string]string{
+			"dynasty": "han",
+			"minzu":   "han",
+		},
+	}
+	fmt.Println(m)
+}
