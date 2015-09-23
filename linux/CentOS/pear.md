@@ -6,6 +6,7 @@
 	
 	$ wget http://pear.php.net/go-pear.phar
 	$ php go-pear.phar
+> 如果第二步没任何反应，则执行：`php -d phar.require_hash=0 go-pear.phar`
 根据提示按`Enter`键就完成了pear的安装，此时，pear命令已生效。
 
 >关于`windows`下安装的说明：

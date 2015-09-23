@@ -31,6 +31,28 @@
 >>
 	yum  install php55w-pgsql php55w-gd -y
 
+>
+#PHP的强制卸载：
+>>	
+>>有时，yum remove php是卸载不掉PHP的，这时可使用下面的方法：
+>>
+* `# rpm -qa|grep php`
+提示信息类似：
+>>
+>>	
+		php-cli-5.4.16-23.el7_0.3.x86_64
+		php-devel-5.4.16-23.el7_0.3.x86_64
+		php-common-5.4.16-23.el7_0.3.x86_64
+>>
+接着要根据依赖关系的按顺序卸载上面的安装包，common被其它2个依赖，而devel依赖cli，所以先卸载devel
+>>
+* `# rpm -e php-devel-5.4.16-23.el7_0.3.x86_64`
+>>
+这样依次卸载即可。
+
+
+---
+
 安装完成后：
 >	
 	#  /etc/init.d/httpd restart
