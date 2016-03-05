@@ -7,11 +7,14 @@ import (
 func InsertSort(a []int) []int {
 	var i, j int
 	for i = 1; i < len(a); i++ {
-		key := a[i]
-		for j = i - 1; j >= 0 && a[j] > key; j-- {
-			a[j+1] = a[j]
-		}
-		a[j+1] = key
+            for j = i - 1; j >= 0; j-- {
+                if(a[j] > a[i]){
+                    key := a[i]
+                    a[i] = a[j];
+                    a[j+1] = key;
+                    break;
+                }    
+            }
 	}
 	return a
 }

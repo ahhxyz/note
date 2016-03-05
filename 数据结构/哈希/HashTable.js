@@ -1,0 +1,7 @@
+function Bucket(){
+    
+}
+
+function HashTable(){
+    
+}
