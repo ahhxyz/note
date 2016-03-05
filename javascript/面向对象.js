@@ -2,8 +2,11 @@
 function Class(){
     this.property01 = '';
     this.property02 = '';
+    //this.init() //实例化时要执行的方法
 }
-
+Class.prototype.init = function(){
+    this.property01 = 1;
+}
 //使用原型来定义实例的共享成员，即方法和共享的成员变量
 Class.prototype.say = function(){
     alert(this.property01);
