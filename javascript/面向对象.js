@@ -1,5 +1,7 @@
 /*
  * 1.使用构造函数来定义类的属性及执行初始化操作
+ *   构造函数也是一种数据结构，类似于C/golang的结构体struct
+ *   构造函数也是一种JavaScript对象，不要用其他语言中函数的思路去理解JavaScript中的函数
  */
 function Class(){
     this.property01 = '';
