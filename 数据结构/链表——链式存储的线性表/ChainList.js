@@ -5,7 +5,7 @@
 function Node(data){
     this.data = data;
     this.next = null;
-    //this.privious = null;
+    this.previous = null;
 }
 function ChainList(head){
     this.head = new Node(head);
@@ -23,6 +23,7 @@ ChainList.prototype.insert = function(data, item){
     var newNode = new Node(data);
     var targetNode = this.find(item);
     newNode.next = targetNode.next;
+    newNode.previous = targetNode;
     targetNode.next = newNode;
 }
 
@@ -43,8 +44,11 @@ ChainList.prototype.findPrevious = function(item){
 }
 
 ChainList.prototype.remove = function(item){
-    var prevNode = this.findPrevious(item);
-    prevNode.next = prevNode.next.next;
+    var node = this.find(item);
+    node.previous.next = node.next;
+    node.next.previous = node.previous;
+    node.next = null;
+    node.previous = null;
 }
 
 var chainList = new ChainList('张三');
@@ -55,5 +59,5 @@ chainList.insert('王麻子', '李四');
 //node.data = 'lisi';
 //console.log(chainList.findPrevious('lisi'))
 chainList.display();
-chainList.remove('李四')
-chainList.display();
+//chainList.remove('李四')
+//chainList.display();
