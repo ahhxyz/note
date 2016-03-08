@@ -4,7 +4,7 @@
  * 例如：对普通会员无折扣，对银牌会员提供9折优惠，对金牌会员提供8折优惠。
  */
 /**
- * 将经常变化的功能独立出来
+ * 将经常变化的功能独立出来，也可以使用抽象类
  */
 interface Strategy{
     public function price($price);//不同级别会员的折扣
@@ -12,7 +12,7 @@ interface Strategy{
 
 
 /**
- * 普通会员策略类
+ * 普通会员的价格策略类
  */
 class OrdinaryMember implements Strategy{
     
@@ -30,34 +30,34 @@ class OrdinaryMember implements Strategy{
 
 
 /**
- * 银牌会员策略类
+ * 银牌会员的价格策略类
  */
 class SilverMember implements Strategy{
     public function price($price) {
-        return 0.9*$price;
+        return 0.9 * $price;
     }
 }
 
 
 /**
- * 金牌会员策略类
+ * 金牌会员的价格策略类
  */
 class GoldMember implements Strategy{
     public function price($price) {
-        return 0.8*$price;
+        return 0.8 * $price;
     }
 }
 
 class Pirce{
     //具体的策略类实例
-    private $strategyInstace=NULL;
+    private $strategyInstace = NULL;
     
     /**
      * 传入具体的策略类对象
      * @param Strategh $instance 具体的策略类对象
      */
     public function __construct(Strategy $instance) {
-        $this->strategyInstace=$instance;
+        $this->strategyInstace = $instance;
     }
     
     public function quote($price){
@@ -68,9 +68,9 @@ class Pirce{
 /**
  * 客户端操作
  */
-$goldMember=new GoldMember();
-$price=new Pirce($goldMember);
-$finalPrice=$price->quote(888);
+$goldMember = new GoldMember();
+$price = new Pirce($goldMember);
+$finalPrice = $price->quote(888);
 echo "最终价格：".$finalPrice;
 
 
