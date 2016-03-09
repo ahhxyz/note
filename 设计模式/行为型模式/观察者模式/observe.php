@@ -10,47 +10,50 @@ header("Content-type:text/html;charset=utf-8");
 
 //抽象主体
 interface Subject{
-     public function add($observer);
-     public function delete($observer);
-     public function notifyObservers();
+    public function add($observer);
+    public function delete($observer);
+    public function notifyObservers();
 }
-//具体主体
-class ConcreteSubject implements Subject{
-     private $_observers;
-     public function __construct(){
-          $this->_observers = array();  //在主体内部创建一个观察者的对象列表，这个数组的元素都是对象类型
-     }
- 
-     public function add($observer){
-          return array_push($this->_observers,$observer);  //新增一个观察者
-     }
-     
-     public function delete($observer){
-          $index = array_search($observer,$this->_observers);
-          
-		  if($index === false || !array_key_exists($index,$this->_observers)){
-			return false;
-          }
-          
-		  unset($this->_observer[$index]); //删除一个观察者
-          return true;
-     }
- 
-     public function notifyObservers(){
-          if(!is_array($this->_observers)){
-			return false;
-          }
-          foreach($this->_observers as $observer){  //通知每一个观察者
-			$observer->update();
-          }
-          return true;
-     }
-}
- 
+
 //抽象观察者
 interface Observer{
-     public function update();
+    public function update();
 }
+
+//具体主体
+class ConcreteSubject implements Subject{
+    private $_observers;
+    public function __construct(){
+        $this->_observers = [];  //在主体内部创建一个观察者的对象列表，这个数组的元素都是对象类型
+    }
+
+    public function add(Observer $observer){
+        $this->_observers[] = $observer;  //新增一个观察者
+    }
+
+    public function delete(Observer $observer){
+        $index = array_search($observer,$this->_observers);
+
+        if($index === false || !array_key_exists($index,$this->_observers)){
+            return false;
+        }
+
+        unset($this->_observer[$index]); //删除一个观察者
+        return true;
+    }
+
+    public function notifyObservers(){
+         if(!is_array($this->_observers)){
+            return false;
+         }
+         foreach($this->_observers as $observer){  //通知每一个观察者
+            $observer->update();
+         }
+         return true;
+    }
+}
+ 
+
 //具体观察者
 class ConcreteObserver implements Observer{
      private $_name;
@@ -63,6 +66,34 @@ class ConcreteObserver implements Observer{
      }
 }
  
+header("Content-type:text/html;charset=utf-8");
+//客户端
+class Client{
+	public static function test(){
+            $subject = new ConcreteSubject();  //创建一个主体对象
+
+            //新增第一个观察者
+            $observer1 = new ConcreteObserver('奥巴马');
+            //将这个观察者注册到主体当中
+            $subject->add($observer1);
+            //通知
+            $subject->notifyObservers();
+
+            //新增第二个观察者
+            $observer2 = new ConcreteObserver('山姆');
+            $subject->add($observer2);
+            //通知
+            $subject->notifyObservers();
+
+            //删除观察者1
+            $subject->delete($observer1);
+            //通知
+            $subject->notifyObservers();
+
+	}
+}
+
+Client::test()
 
 
 
