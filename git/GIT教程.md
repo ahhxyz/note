@@ -55,45 +55,41 @@
 
 
 #GIT服务器搭建：
+首先安装git:
+	
     $ yum install git -y
-* ##小团队
+##小团队
 
-	* 1.创建一个git用户:
+* 1. 在服务器创建一个git用户:
     
-    		git useradd git
+    		git useradd demo@demo.com
     
-		如果是SSH方式，还要收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导      入到`/home/git/.ssh/authorized_keys`文件里，一行一个。
+	>如果是SSH方式，还要收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导      入到`/home/git/.ssh/authorized_keys`文件里，一行一个。
 
 
-	* 2.初始化Git仓库:
+* 2. 在服务器初始化Git仓库:
 	先选定一个目录作为Git仓库，这里以`/data/git`为例；
 	在目录下输入命令：
-
-
     		$  git init --bare demo.git
+		
+	> 如果是从其他地方迁移GIT仓库则使用:`git clone --bare demo.git`
 
-    		chown -R git:git demo.git
-	* 3.初始化本地仓库:
-    	
-			git init    
-	
-		设置长期保存密码：  
-    
-    		git config --global credential.helper store
+    > 更改目录权限：`chown -R git:git demo@demo.com`
+
+* 3. 克隆远程仓库：
+    $ git clone git@yourserver:/git/demo.git	
 　　
-	* 4.将本地仓库与远程仓库关联：
-    
-    		git remote add origin git@yourserver:/git/demo.git
+> 如果本地已初始化了一个仓库，则直接将本地仓库与远程仓库关联：
+    		git remote add origin demo@demo.com@yourserver:/git/demo.git
 
-	* 5.克隆远程仓库：
-
-
-    		$ git clone git@yourserver:/git/demo.git
+	
     
     
-    
+>注：　　yourserver为服务器地址(IP或域名)。    
 
-		>注：　　yourserver为服务器地址(IP或域名)。
+>	设置长期保存密码： `git config --global credential.helper store`
+
+
 
 ---
 　　
@@ -102,6 +98,15 @@
 * ## `大团队`:使用gitosis或gitolite来管理公钥
 
 Gitosis和gitolite只是Git 服务管理工具，不需要它们一样可以搭建git服务器。
+
+## GIT服务器迁移
+
+* 迁移到自己的服务器：在新GIT服务器的git目录执行`git clone --bare 原git地址`即可
+* 迁移到github等代码托管平台：除了需要现在平台创建仓库，还需要通过本地来执行以下操作:
+	* 	`git clone --bare 原git地址`
+	* 	`git push --mirror git平台上的仓库地址`
+
+---
 
 
 #常用GIT命令：
