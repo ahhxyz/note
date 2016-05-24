@@ -68,7 +68,7 @@ class Pirce{
 /**
  * 客户端操作
  */
-$goldMember = new GoldMember();
+$goldMember = new GoldMember(); //可使用工厂来获取策略类
 $price = new Pirce($goldMember);
 $finalPrice = $price->quote(888);
 echo "最终价格：".$finalPrice;

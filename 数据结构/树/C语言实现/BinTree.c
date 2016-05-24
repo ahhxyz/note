@@ -10,25 +10,25 @@
 #include "BinTree.h"
 
 /**
- * 以一个ChainBinTree类型的指针作为根节点来初始化二叉树
- * @param node 动态申请的指向ChainBinTree类型的指针
- * @return  (ChainBinTree *)
+ * 以一个Node类型的指针作为根节点来初始化二叉树
+ * @param node 动态申请的指向Node类型的指针
+ * @return  (Node *)
  */
-ChainBinTree *init(){
-    ChainBinTree *node;
-    if(node=(ChainBinTree *)malloc(sizeof(ChainBinTree))){
+Node *init(){
+    Node *node;
+    if(node = (Node *) malloc( sizeof(Node) ) ){
         printf("请输入根节点的值：");
-        fgets(node->data,10,stdin);
-        node->left=NULL;
-        node->right=NULL;
-        printf("%s\n",node->data);
+        fgets(node->data, 10, stdin);
+        node->left = NULL;
+        node->right = NULL;
+        printf("%s\n", node->data);
         return node;
     }
     return NULL;
 }
 
 
-int add(ChainBinTree *p,ChainBinTree *node,int n){
+int add(Node *p, Node *node, int n){
     if(!p){
         printf("父节点不存在！");
         return 0;
@@ -40,13 +40,13 @@ int add(ChainBinTree *p,ChainBinTree *node,int n){
                 printf("左子树节点已存在！");
                 return 0;
             }
-            p->left=node;
+            p->left = node;
             break;
         case 2:
             if(p->right){
                 printf("右子树节点已存在！");
             }
-            p->right=node;
+            p->right = node;
             break;            
         default:
             printf("参数错误");
@@ -63,20 +63,20 @@ int add(ChainBinTree *p,ChainBinTree *node,int n){
  * @param data
  * @return 
  */
-ChainBinTree *find(ChainBinTree *d,char *data){
+Node *find(Node *d,char *data){
     if(!d){
         return NULL;
     }
     
-    if(strcmp(d->data,data)==0){
+    if(strcmp(d->data,data) == 0){
         return d;
     }
     
-    if(strcmp(d->left->data,data)==0){
+    if(strcmp(d->left->data,data) == 0){
         return d;
     }
     
-    if(strcmp(d->right->data,data)==0){
+    if(strcmp(d->right->data,data) == 0){
         return d;
     }
 }

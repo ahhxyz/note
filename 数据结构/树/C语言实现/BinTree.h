@@ -1,21 +1,17 @@
 #include <stdio.h>
 
-/*
-typedef struct {
-    char *name;
-    int age;
-}DATA;
-*/
 
-typedef struct BinTree{
-    char *data;
-    struct BinTree *left;
-    struct BinTree *right;
-}ChainBinTree;
+typedef struct node{
+    char data;
+    struct node *left;
+	struct node *right;
+}Node
 
-ChainBinTree *init();//初始化二叉树
 
-int add(ChainBinTree *p,ChainBinTree *node,int n);//添加节点到某个节点下面
+
+Node *init();//初始化二叉树
+
+int add(Node *p, Node *node, int n);//添加节点到某个节点下面
 
 
 
