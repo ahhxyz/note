@@ -104,3 +104,16 @@ class Mail extends Component{
     }
 
 }
+$mailConfig = [
+    'host' => '',
+    'username' => '',
+    'password' => '',
+];
+//构造函数注入
+Yii::createObject(Mail::class, [\PHPMailer::class, $mailConfig]);
+//属性注入，需要修改Mail类
+Yii::createObject([
+    'class' => Mail::class,
+    'mailer' => \PHPMailer::class,
+    'host' => $mailConfig['host']
+]);
