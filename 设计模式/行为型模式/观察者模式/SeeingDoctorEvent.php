@@ -1,6 +1,13 @@
 ﻿<?php
 /*
- * 观察者模式：就医
+ * 观察者模式：事件系统
+ *
+ * 事件系统有以下特点：
+ * 1. 注册事件就相当于添加观察者
+ * 2. 观察者是事件注册者，比如一个component子类的对象
+ * 3. 通过触发事件的方式来通知观察者，实际就是通过触发事件来执行观察者指定的handler.
+ *    触发事件就相当于被观察者的状态发生了改变。
+ * 4. 事件处理器是观察者在收到通知后要执行的逻辑
  *
  */
 
@@ -12,10 +19,7 @@ interface Subject{
     public function notifyObservers();
 }
 
-//抽象观察者
-interface Observer{
-    public function update();   //收到通知或触发事件后要执行的操作
-}
+
 
 //具体主体：科室
 class Doctor implements Subject{
@@ -79,25 +83,31 @@ class Patientor implements Observer{
      }
 }
  
+//header("Content-type:text/html;charset=utf-8");
+//客户端
+class Client{
+	public static function test(){
+            $doctor = new Doctor();  //创建一个主体对象
+
+            //新增第一个观察者
+            $patientor1 = new Patientor('奥巴马');
+            //将这个观察者注册到主体当中，相当于注册事件
+            $doctor->add($patientor1);
+            //通知，相当于触发事件
+            $doctor->notifyObservers();
+
+            //新增第二个观察者
+            $observer2 = new Patientor('山姆');
+            $doctor->add($observer2);
+            //通知
+            $doctor->notifyObservers();
 
 
-$doctor = new Doctor();  //创建一个主体对象
 
-//新增第一个观察者
-$patientor1 = new Patientor('奥巴马');
-//将这个观察者注册到主体当中，相当于注册事件
-$doctor->add($patientor1);
-//通知，相当于触发事件
-$doctor->notifyObservers();
+	}
+}
 
-//新增第二个观察者
-$observer2 = new Patientor('山姆');
-$doctor->add($observer2);
-//通知
-$doctor->notifyObservers();
-
-
-
+Client::test()
 
 
 
