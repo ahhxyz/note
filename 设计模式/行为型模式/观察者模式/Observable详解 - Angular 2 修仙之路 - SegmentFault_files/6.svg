@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="200" height="200"></rect>
+    </defs>
+    <g id="pattern" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="6">
+            <g>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill-opacity="0" fill="#D8D8D8" xlink:href="#path-1"></use>
+                <g id="Group" mask="url(#mask-2)">
+                    <g transform="translate(-20.000000, -40.000000)">
+                        <g opacity="0.15" transform="translate(40.354232, 66.741243) rotate(45.000000) translate(-40.354232, -66.741243) translate(12.141066, 38.515437)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.15" transform="translate(199.984326, 66.741243) rotate(45.000000) translate(-199.984326, -66.741243) translate(171.771160, 38.515437)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.15" transform="translate(40.354232, 226.442856) rotate(45.000000) translate(-40.354232, -226.442856) translate(12.141066, 198.217049)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.15" transform="translate(199.984326, 226.442856) rotate(45.000000) translate(-199.984326, -226.442856) translate(171.771160, 198.217049)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.15" transform="translate(66.959248, 80.049711) rotate(45.000000) translate(-66.959248, -80.049711) translate(38.746082, 51.823904)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.15" transform="translate(66.959248, 239.751324) rotate(45.000000) translate(-66.959248, -239.751324) translate(38.746082, 211.525517)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.141333333" transform="translate(93.564263, 66.741243) rotate(45.000000) translate(-93.564263, -66.741243) translate(65.351097, 38.515437)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.141333333" transform="translate(93.564263, 226.442856) rotate(45.000000) translate(-93.564263, -226.442856) translate(65.351097, 198.217049)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.072" transform="translate(120.169279, 80.049711) rotate(45.000000) translate(-120.169279, -80.049711) translate(91.956113, 51.823904)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.072" transform="translate(120.169279, 239.751324) rotate(45.000000) translate(-120.169279, -239.751324) translate(91.956113, 211.525517)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0893333333" transform="translate(146.774295, 66.741243) rotate(45.000000) translate(-146.774295, -66.741243) translate(118.561129, 38.515437)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0893333333" transform="translate(146.774295, 226.442856) rotate(45.000000) translate(-146.774295, -226.442856) translate(118.561129, 198.217049)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0893333333" transform="translate(173.379310, 80.049711) rotate(45.000000) translate(-173.379310, -80.049711) translate(145.166144, 51.823904)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0893333333" transform="translate(173.379310, 239.751324) rotate(45.000000) translate(-173.379310, -239.751324) translate(145.166144, 211.525517)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.106666667" transform="translate(40.354232, 93.358179) rotate(45.000000) translate(-40.354232, -93.358179) translate(12.141066, 65.132372)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.106666667" transform="translate(199.984326, 93.358179) rotate(45.000000) translate(-199.984326, -93.358179) translate(171.771160, 65.132372)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0633333333" transform="translate(66.959248, 106.666646) rotate(45.000000) translate(-66.959248, -106.666646) translate(38.746082, 78.440840)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.02" transform="translate(93.564263, 93.358179) rotate(45.000000) translate(-93.564263, -93.358179) translate(65.351097, 65.132372)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0286666667" transform="translate(120.169279, 106.666646) rotate(45.000000) translate(-120.169279, -106.666646) translate(91.956113, 78.440840)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0546666667" transform="translate(146.774295, 93.358179) rotate(45.000000) translate(-146.774295, -93.358179) translate(118.561129, 65.132372)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.046" transform="translate(173.379310, 106.666646) rotate(45.000000) translate(-173.379310, -106.666646) translate(145.166144, 78.440840)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.02" transform="translate(40.354232, 119.975114) rotate(45.000000) translate(-40.354232, -119.975114) translate(12.141066, 91.749308)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.02" transform="translate(199.984326, 119.975114) rotate(45.000000) translate(-199.984326, -119.975114) translate(171.771160, 91.749308)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.072" transform="translate(66.959248, 133.283582) rotate(45.000000) translate(-66.959248, -133.283582) translate(38.746082, 105.057775)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.072" transform="translate(93.564263, 119.975114) rotate(45.000000) translate(-93.564263, -119.975114) translate(65.351097, 91.749308)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.046" transform="translate(120.169279, 133.283582) rotate(45.000000) translate(-120.169279, -133.283582) translate(91.956113, 105.057775)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0633333333" transform="translate(146.774295, 119.975114) rotate(45.000000) translate(-146.774295, -119.975114) translate(118.561129, 91.749308)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.124" transform="translate(173.379310, 133.283582) rotate(45.000000) translate(-173.379310, -133.283582) translate(145.166144, 105.057775)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.132666667" transform="translate(40.354232, 146.592049) rotate(45.000000) translate(-40.354232, -146.592049) translate(12.141066, 118.366243)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.132666667" transform="translate(199.984326, 146.592049) rotate(45.000000) translate(-199.984326, -146.592049) translate(171.771160, 118.366243)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.098" transform="translate(66.959248, 159.900517) rotate(45.000000) translate(-66.959248, -159.900517) translate(38.746082, 131.674711)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.046" transform="translate(93.564263, 146.592049) rotate(45.000000) translate(-93.564263, -146.592049) translate(65.351097, 118.366243)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0633333333" transform="translate(120.169279, 159.900517) rotate(45.000000) translate(-120.169279, -159.900517) translate(91.956113, 131.674711)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.15" transform="translate(146.774295, 146.592049) rotate(45.000000) translate(-146.774295, -146.592049) translate(118.561129, 118.366243)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0806666667" transform="translate(173.379310, 159.900517) rotate(45.000000) translate(-173.379310, -159.900517) translate(145.166144, 131.674711)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0286666667" transform="translate(40.354232, 173.208985) rotate(45.000000) translate(-40.354232, -173.208985) translate(12.141066, 144.983179)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0286666667" transform="translate(199.984326, 173.208985) rotate(45.000000) translate(-199.984326, -173.208985) translate(171.771160, 144.983179)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.072" transform="translate(66.959248, 186.517453) rotate(45.000000) translate(-66.959248, -186.517453) translate(38.746082, 158.291646)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.098" transform="translate(93.564263, 173.208985) rotate(45.000000) translate(-93.564263, -173.208985) translate(65.351097, 144.983179)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0286666667" transform="translate(120.169279, 186.517453) rotate(45.000000) translate(-120.169279, -186.517453) translate(91.956113, 158.291646)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0893333333" transform="translate(146.774295, 173.208985) rotate(45.000000) translate(-146.774295, -173.208985) translate(118.561129, 144.983179)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0806666667" transform="translate(173.379310, 186.517453) rotate(45.000000) translate(-173.379310, -186.517453) translate(145.166144, 158.291646)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.115333333" transform="translate(40.354232, 199.825920) rotate(45.000000) translate(-40.354232, -199.825920) translate(12.141066, 171.600114)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.115333333" transform="translate(199.984326, 199.825920) rotate(45.000000) translate(-199.984326, -199.825920) translate(171.771160, 171.600114)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.115333333" transform="translate(40.354232, 40.124308) rotate(45.000000) translate(-40.354232, -40.124308) translate(12.141066, 11.898501)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0806666667" transform="translate(66.959248, 213.134388) rotate(45.000000) translate(-66.959248, -213.134388) translate(38.746082, 184.908582)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0806666667" transform="translate(66.959248, 53.432775) rotate(45.000000) translate(-66.959248, -53.432775) translate(38.746082, 25.206969)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.132666667" transform="translate(93.564263, 199.825920) rotate(45.000000) translate(-93.564263, -199.825920) translate(65.351097, 171.600114)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.132666667" transform="translate(93.564263, 40.124308) rotate(45.000000) translate(-93.564263, -40.124308) translate(65.351097, 11.898501)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.115333333" transform="translate(120.169279, 213.134388) rotate(45.000000) translate(-120.169279, -213.134388) translate(91.956113, 184.908582)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.115333333" transform="translate(120.169279, 53.432775) rotate(45.000000) translate(-120.169279, -53.432775) translate(91.956113, 25.206969)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.046" transform="translate(146.774295, 199.825920) rotate(45.000000) translate(-146.774295, -199.825920) translate(118.561129, 171.600114)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.046" transform="translate(146.774295, 40.124308) rotate(45.000000) translate(-146.774295, -40.124308) translate(118.561129, 11.898501)">
+                            <rect id="Rectangle-path" fill="#222222" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#222222" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0893333333" transform="translate(173.379310, 213.134388) rotate(45.000000) translate(-173.379310, -213.134388) translate(145.166144, 184.908582)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                        <g opacity="0.0893333333" transform="translate(173.379310, 53.432775) rotate(45.000000) translate(-173.379310, -53.432775) translate(145.166144, 25.206969)">
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="18.8087774" y="0" width="18.8087774" height="56.4516129"></rect>
+                            <rect id="Rectangle-path" fill="#DDDDDD" x="0" y="18.8172043" width="56.4263323" height="18.8172043"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

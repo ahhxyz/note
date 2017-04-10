@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://segmentfault.com/a/1190000008809168 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="renderer" content="webkit"><meta property="qc:admins" content="15317273575564615446375"><meta property="og:image" content="https://static.segmentfault.com/v-58dfce02/global/img/touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>Observable详解 - Angular 2 修仙之路 - SegmentFault</title><meta name="description" content="更新内容 - 学习资源、参考资源内容； 更新时间 - 2017-04-03 在介绍 Observable 之前，我们要先了解两个设计模式： Observer Pattern - (观察者模式) Iterator Pattern - (迭代器模式) 这两个模式是 Observable ..."><meta name="keywords" content="rxjs,angular2"><link rel="search" type="application/opensearchdescription+xml" href="https://segmentfault.com/opensearch.xml" title="SegmentFault"><link rel="shortcut icon" href="https://static.segmentfault.com/v-58dfce02/global/img/favicon.ico"><link rel="apple-touch-icon" href="https://static.segmentfault.com/v-58dfce02/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"><meta name="msapplication-square150x150logo" content="https://static.segmentfault.com/v-58dfce02/global/img/touch-icon.png"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="https://segmentfault.com/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="https://segmentfault.com/feeds/blogs"><link rel="stylesheet" href="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/global.css"><link rel="stylesheet" href="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/blog.css"><link rel="stylesheet" href="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/responsive.css"></head><body data-mod="blog" class="blog-post "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://static.segmentfault.com/v-58dfce02/global/img/touch-icon-512.png"><div class="global-nav sf-header sf-header--index"><nav class="container nav"><div class="hidden-sm hidden-lg hidden-md"><div class="sf-header__logo sf-header__logo--response"><h1><a></a></h1></div><div class="dropdown m-menu"><a href="javascript:void(0);" id="dLabel" class="visible-xs-block m-toptools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span><span class="mobile-menu__unreadpoint"></span></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li class="mobile-menu__item"><a href="https://segmentfault.com/">首页</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/news" class="menu__item--new-show">头条</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/questions">问答</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/blogs">专栏</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/lives" class="menu__item--new-show">讲堂</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/jobs">职位</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/events">活动</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/notes">笔记</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/tags">标签</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/users">榜单</a></li></ul></div><a href="https://segmentfault.com/user/login" class="visible-xs-block pull-right m-ask m-toptools"><span class="glyphicon glyphicon-log-in"></span></a></div><div class="row hidden-xs"><div class="col-sm-10 col-md-8 col-lg-7"><div class="sf-header__logo"><h1><a href="https://segmentfault.com/">SegmentFault</a></h1></div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="https://segmentfault.com/news" class="menu__item--new-show">头条</a></li><li class="menu__item"><a href="https://segmentfault.com/questions">问答</a></li><li class="menu__item"><a href="https://segmentfault.com/blogs">专栏</a></li><li class="menu__item"><a href="https://segmentfault.com/lives" class="menu__item--new-show">讲堂</a></li><li class="menu__item"><a href="https://segmentfault.com/jobs">职位</a></li><li class="menu__item"><a href="https://segmentfault.com/events">活动</a></li></ul></div><div class="col-sm-2 col-md-4 col-lg-5 text-right"><form action="https://segmentfault.com/search" class="header-search  hidden-sm hidden-xs mr20"><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text" placeholder="输入关键字搜索" class="form-control" value=""></form><ul class="opts list-inline hidden-xs"><li class="opts__item message has-unread"><a target="_blank" href="https://segmentfault.com/tour"><span class="sr-only">消息</span><span id="messageCount" class="fa fa-hand-peace-o"></span></a></li><li class="opts__item"><a href="https://segmentfault.com/user/login" class="SFLogin em ml10" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">注册 ·
+                                        登录</a></li></ul></div></div></nav></div><div class="global-navTags"><div class="container"><nav class=" nav"><ul class="nav__list"><li class="nav__item"><a href="https://segmentfault.com/"><i class="fa fa-home"></i>home
+                            </a></li><li class="nav__item nav__item--split"><a><span class="split"></span></a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/javascript">javascript</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/php">php</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/python">python</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/java">java</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/mysql">mysql</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/ios">ios</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/android">android</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/node.js">node.js</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/html5">html5</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/linux">linux</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/c%2B%2B">c++</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/css3">css3</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/git">git</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/golang">golang</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/ruby">ruby</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/vim">vim</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/docker">docker</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/mongodb">mongodb</a></li><li class="nav__item nav__item--more" data-open="0"><a class="nav__item--more-link" href="https://segmentfault.com/tags"><div class="tag__more"><i class="tag__more--icon"></i><i class="tag__more--icon"></i><i class="tag__more--icon"></i></div></a></li></ul><div class="tag-mgr__box hide"><input class="tag-mgr__query" type="text" placeholder="搜索关注的标签" data-tags="null"><div class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" data-mcs-theme="minimal-dark" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 0px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr"><ul class="tag-mgr__list"></ul></div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div><a href="https://segmentfault.com/tags" class="btn btn-primary btn-sm tag-mgr__btn">标签管理</a></div></nav></div></div>
+    <div class="wrap">
+    <div class="post-topheader custom-">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <span class="post-topheader__title--icon-symbol">文</span>
+
+                    <div class="post-topheader__info" data-username="semlinker" data-userslug="semlinker_58c0ca59406cd" data-useravatar="https://sfault-avatar.b0.upaiyun.com/483/735/483735741-58c0cb69d67b6_big64">
+
+                        <h1 class="h3 post-topheader__info--title" id="articleTitle" data-id="1190000008809168">
+
+                            <a href="https://segmentfault.com/a/1190000008809168"> Observable详解</a>
+                        </h1>
+
+                        <ul class="taglist--inline inline-block article__title--tag mr10">
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/rxjs/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="rxjs" data-id="1040000004293905">rxjs</a></li>
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/angular2/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="angular2" data-id="1040000003751827">angular2</a></li>
+                                                    </ul>
+
+                        <div class="article__author">
+                            <a href="https://segmentfault.com/u/semlinker_58c0ca59406cd" class="mr5 "><strong>semlinker</strong></a>
+                            3月23日发布
+                                                                                </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4 hidden-xs">
+                    <ul class="post-topheader__side list-unstyled">
+                        <li>
+                                                                                                <button type="button" class="btn btn-success btn-sm" data-id="1190000008809168" id="sideLike">推荐
+                                    </button>
+                                                                                        <strong id="sideLiked">2</strong> 推荐
+                        </li>
+                        <li>
+                                                                                                <button type="button" id="sideBookmark" class="btn btn-default btn-sm" data-id="1190000008809168" data-type="article">收藏
+                                    </button>
+                                                                                        <strong id="sideBookmarked">7</strong> 收藏，<strong class="no-stress">376</strong> 浏览
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- end .post-topheader -->
+
+    <div class="container mt30">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main ">
+
+                
+                <div class="article fmt article__content" data-id="1190000008809168" data-license="cc">
+                    
+<blockquote><p>更新内容 - 学习资源、参考资源内容；<br>  更新时间 - 2017-04-03</p></blockquote>
+<p>在介绍 Observable 之前，我们要先了解两个设计模式：</p>
+<ul>
+<li><p>Observer Pattern -  (观察者模式)</p></li>
+<li><p>Iterator Pattern - (迭代器模式)</p></li>
+</ul>
+<p>这两个模式是 Observable 的基础，下面我们先来介绍一下 Observer Pattern。</p>
+<h2 id="articleHeader0">Observer Pattern</h2>
+<h3 id="articleHeader1">观察者模式定义</h3>
+<blockquote><p><strong>观察者模式</strong>是<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E4%BB%B6%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F" target="_blank">软件设计模式</a>的一种。在此种模式中，一个目标对象管理所有相依于它的观察者对象，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实时事件处理系统。 — 维基百科</p></blockquote>
+<p>观察者模式又叫发布订阅模式（Publish/Subscribe），它定义了一种一对多的关系，让多个观察者对象同时监听某一个主题对象，这个主题对象的状态发生变化时就会通知所有的观察者对象，使得它们能够自动更新自己。</p>
+<p>我们可以使用日常生活中，期刊订阅的例子来形象地解释一下上面的概念。期刊订阅包含两个主要的角色：期刊出版方和订阅者，他们之间的关系如下：</p>
+<ul>
+<li><p>期刊出版方 - 负责期刊的出版和发行工作</p></li>
+<li><p>订阅者 - 只需执行订阅操作，新版的期刊发布后，就会主动收到通知，如果取消订阅，以后就不会再收到通知</p></li>
+</ul>
+<p>在观察者模式中也有两个主要角色：Subject (主题) 和 Observer (观察者) 。它们分别对应例子中的期刊出版方和订阅者。接下来我们来看张图，从而加深对上面概念的理解。</p>
+<p><img data-src="/img/bVK7Ps?w=414&amp;h=273" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/bVK7Ps" style="cursor: pointer; display: inline;"></p>
+<h3 id="articleHeader2">观察者模式优缺点</h3>
+<p>观察者模式的优点：</p>
+<ul>
+<li><p>支持简单的广播通信，自动通知所有已经订阅过的对象</p></li>
+<li><p>目标对象与观察者之间的抽象耦合关系能够单独扩展以及重用</p></li>
+</ul>
+<p>观察者模式的缺点：</p>
+<ul>
+<li><p>如果一个被观察者对象有很多的直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间</p></li>
+<li><p>如果在观察者和观察目标之间有循环依赖的话，观察目标会触发它们之间进行循环调用，可能导致系统崩溃</p></li>
+</ul>
+<h3 id="articleHeader3">观察者模式的应用</h3>
+<p>在前端领域，观察者模式被广泛地使用。最常见的例子就是为 DOM 对象添加事件监听，具体示例如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="&lt;button id=&quot;btn&quot;&gt;确认&lt;/button&gt;
+
+function clickHandler(event) {
+    console.log(&#39;用户已点击确认按钮!&#39;);
+}
+document.getElementById(&quot;btn&quot;).addEventListener(&#39;click&#39;, clickHandler);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript">&lt;button id=<span class="hljs-string">"btn"</span>&gt;确认&lt;<span class="hljs-regexp">/button&gt;
+
+function clickHandler(event) {
+    console.log('用户已点击确认按钮!');
+}
+document.getElementById("btn").addEventListener('click', clickHandler);</span></code></pre>
+<p>上面代码中，我们通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener" target="_blank">addEventListener</a> API 监听 button 对象上的点击事件，当用户点击按钮时，会自动执行我们的 <code>clickHandler</code> 函数。</p>
+<h3 id="articleHeader4">观察者模式实战</h3>
+<p>Subject 类定义：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="class Subject {
+    
+    constructor() {
+        this.observerCollection = [];
+    }
+    
+    registerObserver(observer) {
+        this.observerCollection.push(observer);
+    }
+    
+    unregisterObserver(observer) {
+        let index = this.observerCollection.indexOf(observer);
+        if(index &gt;= 0) this.observerCollection.splice(index, 1);
+    }
+    
+    notifyObservers() {
+        this.observerCollection.forEach((observer)=&gt;observer.notify());
+    }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs coffeescript"><code class="typescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Subject</span> {</span>
+    
+    constructor() {
+        <span class="hljs-keyword">this</span>.observerCollection = [];
+    }
+    
+    registerObserver(observer) {
+        <span class="hljs-keyword">this</span>.observerCollection.push(observer);
+    }
+    
+    unregisterObserver(observer) {
+        <span class="hljs-reserved">let</span> index = <span class="hljs-keyword">this</span>.observerCollection.indexOf(observer);
+        <span class="hljs-keyword">if</span>(index &gt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">this</span>.observerCollection.splice(index, <span class="hljs-number">1</span>);
+    }
+    
+    notifyObservers() {
+        <span class="hljs-keyword">this</span>.observerCollection.forEach(<span class="hljs-function"><span class="hljs-params">(observer)</span>=&gt;</span>observer.notify());
+    }
+}</code></pre>
+<p>Observer 类定义：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="class Observer {
+    
+    constructor(name) {
+        this.name = name;
+    }
+    
+    notify() {
+        console.log(`${this.name} has been notified.`);
+    }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs coffeescript"><code class="typescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observer</span> {</span>
+    
+    constructor(name) {
+        <span class="hljs-keyword">this</span>.name = name;
+    }
+    
+    notify() {
+        <span class="hljs-built_in">console</span>.log(`<span class="javascript">${<span class="hljs-keyword">this</span>.name} has been notified.</span>`);
+    }
+}</code></pre>
+<p>使用示例：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="let subject = new Subject(); // 创建主题对象
+
+let observer1 = new Observer(&#39;semlinker&#39;); // 创建观察者A - &#39;semlinker&#39;
+let observer2 = new Observer(&#39;lolo&#39;); // 创建观察者B - &#39;lolo&#39;
+
+subject.registerObserver(observer1); // 注册观察者A
+subject.registerObserver(observer2); // 注册观察者B
+ 
+subject.notifyObservers(); // 通知观察者
+
+subject.unregisterObserver(observer1); // 移除观察者A
+
+subject.notifyObservers(); // 验证是否成功移除" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs cs"><code class="typescript"><span class="hljs-keyword">let</span> subject = <span class="hljs-keyword">new</span> Subject(); <span class="hljs-comment">// 创建主题对象</span>
+
+<span class="hljs-keyword">let</span> observer1 = <span class="hljs-keyword">new</span> Observer(<span class="hljs-string">'semlinker'</span>); <span class="hljs-comment">// 创建观察者A - 'semlinker'</span>
+<span class="hljs-keyword">let</span> observer2 = <span class="hljs-keyword">new</span> Observer(<span class="hljs-string">'lolo'</span>); <span class="hljs-comment">// 创建观察者B - 'lolo'</span>
+
+subject.registerObserver(observer1); <span class="hljs-comment">// 注册观察者A</span>
+subject.registerObserver(observer2); <span class="hljs-comment">// 注册观察者B</span>
+ 
+subject.notifyObservers(); <span class="hljs-comment">// 通知观察者</span>
+
+subject.unregisterObserver(observer1); <span class="hljs-comment">// 移除观察者A</span>
+
+subject.notifyObservers(); <span class="hljs-comment">// 验证是否成功移除</span></code></pre>
+<p>以上代码成功运行后控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="semlinker has been notified. # 输出一次
+2(unknown) lolo has been notified. # 输出两次" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs nginx"><code class="shell"><span class="hljs-title">semlinker</span> has been notified. <span class="hljs-comment"># 输出一次</span>
+<span class="hljs-number">2</span>(unknown) lolo has been notified. <span class="hljs-comment"># 输出两次</span></code></pre>
+<p>需要注意的是，在观察者模式中，通常情况下调用注册观察者后，会返回一个函数，用于移除监听，有兴趣的读者，可以自己尝试一下。(备注：在 Angular 1.x 中调用 $scope.$on() 方法后，就会返回一个函数，用于移除监听)</p>
+<h2 id="articleHeader5">Iterator Pattern</h2>
+<h3 id="articleHeader6">迭代器模式定义</h3>
+<p>迭代器（Iterator）模式，又叫做游标（Cursor）模式。它提供一种方法顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心对象的内部构造，也可以按顺序访问其中的每个元素。</p>
+<h3 id="articleHeader7">迭代器模式的优缺点</h3>
+<p>迭代器模式的优点：</p>
+<ul>
+<li><p>简化了遍历方式，对于对象集合的遍历，还是比较麻烦的，对于数组或者有序列表，我们尚可以通过游标取得，但用户需要在对集合了解的前提下，自行遍历对象，但是对于 hash 表来说，用户遍历起来就比较麻烦。而引入迭代器方法后，用户用起来就简单的多了。</p></li>
+<li><p>封装性良好，用户只需要得到迭代器就可以遍历，而不用去关心遍历算法。</p></li>
+</ul>
+<p>迭代器模式的缺点：</p>
+<ul><li><p>遍历过程是一个单向且不可逆的遍历</p></li></ul>
+<h3 id="articleHeader8">ECMAScript 迭代器</h3>
+<blockquote><p>在 ECMAScript 中 Iterator 最早其实是要采用类似 Python 的 Iterator 规范，就是 Iterator 在没有元素之后，执行 <code>next </code>会直接抛出错误；但后来经过一段时间讨论后，决定采更 functional 的做法，改成在取得最后一个元素之后执行 <code>next</code> 永远都回传 <code>{ done: true, value: undefined }</code></p></blockquote>
+<p>一个迭代器对象 ，知道如何每次访问集合中的一项， 并记录它的当前在序列中所在的位置。在  JavaScript 中迭代器是一个对象，它提供了一个 next() 方法，返回序列中的下一项。这个方法返回包含 <code>done</code> 和 <code>value</code> 两个属性的对象。对象的取值如下：</p>
+<ul>
+<li><p>在最后一个元素前：<code>{ done: false, value: elementValue }</code></p></li>
+<li><p>在最后一个元素后：<code>{ done: true, value: undefined }</code></p></li>
+</ul>
+<p>详细信息可以参考 - <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank">可迭代协议和迭代器协议</a></p>
+<h3 id="articleHeader9">ES 5 迭代器</h3>
+<p>接下来我们来创建一个 makeIterator 函数，该函数的参数类型是数组，当调用该函数后，返回一个包含 next() 方法的 Iterator 对象， 其中 next() 方法是用来获取容器对象中下一个元素。具体示例如下：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="function makeIterator(array){
+    var nextIndex = 0;
+    
+    return {
+       next: function(){
+           return nextIndex &lt; array.length ?
+               {value: array[nextIndex++], done: false} :
+               {done: true};
+       }
+    }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeIterator</span><span class="hljs-params">(array)</span></span>{
+    <span class="hljs-keyword">var</span> nextIndex = <span class="hljs-number">0</span>;
+    
+    <span class="hljs-keyword">return</span> {
+       next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+           <span class="hljs-keyword">return</span> nextIndex &lt; array.length ?
+               {value: array[nextIndex++], done: <span class="hljs-literal">false</span>} :
+               {done: <span class="hljs-literal">true</span>};
+       }
+    }
+}</code></pre>
+<p>一旦初始化, next() 方法可以用来依次访问可迭代对象中的元素：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var it = makeIterator([&#39;yo&#39;, &#39;ya&#39;]);
+console.log(it.next().value); // &#39;yo&#39;
+console.log(it.next().value); // &#39;ya&#39;
+console.log(it.next().done);  // true" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> it = makeIterator([<span class="hljs-string">'yo'</span>, <span class="hljs-string">'ya'</span>]);
+<span class="hljs-built_in">console</span>.log(it.next().value); <span class="hljs-comment">// 'yo'</span>
+<span class="hljs-built_in">console</span>.log(it.next().value); <span class="hljs-comment">// 'ya'</span>
+<span class="hljs-built_in">console</span>.log(it.next().done);  <span class="hljs-comment">// true</span></code></pre>
+<h3 id="articleHeader10">ES 6 迭代器</h3>
+<p>在 ES 6 中我们可以通过 <code>Symbol.iterator</code> 来创建可迭代对象的内部迭代器，具体示例如下：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="let arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+let iter = arr[Symbol.iterator]();" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
+<span class="hljs-keyword">let</span> iter = arr[Symbol.iterator]();</code></pre>
+<p>调用 <code>next()</code> 方法来获取数组中的元素：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="&gt; iter.next()
+{ value: &#39;a&#39;, done: false }
+&gt; iter.next()
+{ value: &#39;b&#39;, done: false }
+&gt; iter.next()
+{ value: &#39;c&#39;, done: false }
+&gt; iter.next()
+{ value: undefined, done: true }" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs css"><code class="shell">&gt; <span class="hljs-tag">iter</span><span class="hljs-class">.next</span>()
+<span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">value</span>:<span class="hljs-value"> <span class="hljs-string">'a'</span>, done: false </span></span></span>}
+&gt; <span class="hljs-tag">iter</span><span class="hljs-class">.next</span>()
+<span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">value</span>:<span class="hljs-value"> <span class="hljs-string">'b'</span>, done: false </span></span></span>}
+&gt; <span class="hljs-tag">iter</span><span class="hljs-class">.next</span>()
+<span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">value</span>:<span class="hljs-value"> <span class="hljs-string">'c'</span>, done: false </span></span></span>}
+&gt; <span class="hljs-tag">iter</span><span class="hljs-class">.next</span>()
+<span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">value</span>:<span class="hljs-value"> undefined, done: true </span></span></span>}</code></pre>
+<p>ES 6 中可迭代的对象：</p>
+<ul>
+<li><p>Arrays</p></li>
+<li><p>Strings</p></li>
+<li><p>Maps</p></li>
+<li><p>Sets</p></li>
+<li><p>DOM data structures (work in progress)</p></li>
+</ul>
+<h2 id="articleHeader11">Observable</h2>
+<p>RxJS 是基于观察者模式和迭代器模式以函数式编程思维来实现的。RxJS 中含有两个基本概念：Observables 与 Observer。Observables 作为被观察者，是一个值或事件的流集合；而 Observer 则作为观察者，根据 Observables 进行处理。</p>
+<p>Observables 与 Observer 之间的订阅发布关系(观察者模式) 如下：</p>
+<ul>
+<li><p><strong>订阅</strong>：Observer 通过 Observable 提供的 subscribe() 方法订阅 Observable。</p></li>
+<li><p><strong>发布</strong>：Observable 通过回调 next 方法向 Observer 发布事件。</p></li>
+</ul>
+<h2 id="articleHeader12">Proposal Observable</h2>
+<ul>
+<li><p><a href="https://github.com/tc39/proposal-observable" target="_blank">Proposal Observable</a></p></li>
+<li>
+<p>Proposal Observable Implementations</p>
+<ul>
+<li><p><a href="https://github.com/ReactiveX/RxJS" target="_blank">RxJS 5</a></p></li>
+<li><p><a href="https://github.com/zenparsing/zen-observable" target="_blank">zen-observable</a></p></li>
+</ul>
+</li>
+<li><p><a href="https://tc39.github.io/proposal-observable/" target="_blank">Observables for ECMAScript</a></p></li>
+</ul>
+<h2 id="articleHeader13">自定义 Observable</h2>
+<p>如果你想真正了解 Observable，最好的方式就是自己写一个。其实 Observable 就是一个函数，它接受一个 <code>Observer</code> 作为参数然后返回另一个函数。</p>
+<p>它的基本特征：</p>
+<ul>
+<li><p>是一个函数</p></li>
+<li><p>接受一个 <code>Observer</code> 对象 (包含 next、error、complete 方法的对象) 作为参数</p></li>
+<li><p>返回一个 <code>unsubscribe</code> 函数，用于取消订阅</p></li>
+</ul>
+<p>它的作用：</p>
+<p>作为生产者与观察者之间的桥梁，并返回一种方法来解除生产者与观察者之间的联系，其中观察者用于处理时间序列上数据流。接下来我们来看一下 Observable 的基础实现：</p>
+<p>DataSource - 数据源</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="class DataSource {
+  constructor() {
+    let i = 0;
+    this._id = setInterval(() =&gt; this.emit(i++), 200); // 创建定时器
+  }
+  
+  emit(n) {
+    const limit = 10;  // 设置数据上限值
+    if (this.ondata) {
+      this.ondata(n);
+    }
+    if (n === limit) {
+      if (this.oncomplete) {
+        this.oncomplete();
+      }
+      this.destroy();
+    }
+  }
+  
+  destroy() { // 清除定时器
+    clearInterval(this._id);
+  }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">class</span> DataSource {
+  constructor() {
+    <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">this</span>._id = setInterval(() =&gt; <span class="hljs-keyword">this</span>.emit(i++), <span class="hljs-number">200</span>); <span class="hljs-comment">// 创建定时器</span>
+  }
+  
+  emit(n) {
+    <span class="hljs-keyword">const</span> limit = <span class="hljs-number">10</span>;  <span class="hljs-comment">// 设置数据上限值</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.ondata) {
+      <span class="hljs-keyword">this</span>.ondata(n);
+    }
+    <span class="hljs-keyword">if</span> (n === limit) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.oncomplete) {
+        <span class="hljs-keyword">this</span>.oncomplete();
+      }
+      <span class="hljs-keyword">this</span>.destroy();
+    }
+  }
+  
+  destroy() { <span class="hljs-comment">// 清除定时器</span>
+    clearInterval(<span class="hljs-keyword">this</span>._id);
+  }
+}</code></pre>
+<p>myObservable</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="function myObservable(observer) {
+    let datasource = new DataSource(); // 创建数据源
+    datasource.ondata = (e) =&gt; observer.next(e); // 处理数据流
+    datasource.onerror = (err) =&gt; observer.error(err); // 处理异常
+    datasource.oncomplete = () =&gt; observer.complete(); // 处理数据流终止
+    return () =&gt; { // 返回一个函数用于，销毁数据源
+        datasource.destroy();
+    };
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myObservable</span><span class="hljs-params">(observer)</span> </span>{
+    <span class="hljs-keyword">let</span> datasource = <span class="hljs-keyword">new</span> DataSource(); <span class="hljs-comment">// 创建数据源</span>
+    datasource.ondata = (e) =&gt; observer.next(e); <span class="hljs-comment">// 处理数据流</span>
+    datasource.onerror = (err) =&gt; observer.error(err); <span class="hljs-comment">// 处理异常</span>
+    datasource.oncomplete = () =&gt; observer.complete(); <span class="hljs-comment">// 处理数据流终止</span>
+    <span class="hljs-keyword">return</span> () =&gt; { <span class="hljs-comment">// 返回一个函数用于，销毁数据源</span>
+        datasource.destroy();
+    };
+}</code></pre>
+<p>使用示例：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="const unsub = myObservable({
+  next(x) { console.log(x); },
+  error(err) { console.error(err); },
+  complete() { console.log(&#39;done&#39;)}
+});
+
+/**
+* 移除注释，可以测试取消订阅
+*/
+// setTimeout(unsub, 500); " title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">const</span> unsub = myObservable({
+  next(x) { <span class="hljs-built_in">console</span>.log(x); },
+  error(err) { <span class="hljs-built_in">console</span>.error(err); },
+  complete() { <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>)}
+});
+
+<span class="hljs-comment">/**
+* 移除注释，可以测试取消订阅
+*/</span>
+<span class="hljs-comment">// setTimeout(unsub, 500); </span></code></pre>
+<p>具体运行结果，可以查看<a href="http://jsbin.com/yazedu/1/edit?js,console,output" target="_blank">线上示例</a>。</p>
+<h3 id="articleHeader14">SafeObserver - 更好的 Observer</h3>
+<p>上面的示例中，我们使用一个包含了 next、error、complete 方法的普通 JavaScript 对象来定义观察者。一个普通的 JavaScript 对象只是一个开始，在 RxJS 5 里面，为开发者提供了一些保障机制，来保证一个更安全的观察者。以下是一些比较重要的原则：</p>
+<ul>
+<li><p>传入的 <code>Observer</code> 对象可以不实现所有规定的方法 (next、error、complete 方法)</p></li>
+<li><p>在 <code>complete</code> 或者 <code>error</code> 触发之后再调用 <code>next</code> 方法是没用的</p></li>
+<li><p>调用 <code>unsubscribe</code> 方法后，任何方法都不能再被调用了</p></li>
+<li><p><code>complete</code> 和 <code>error</code> 触发后，<code>unsubscribe</code> 也会自动调用</p></li>
+<li><p>当 <code>next</code>、<code>complete</code>和<code>error</code> 出现异常时，<code>unsubscribe</code> 也会自动调用以保证资源不会浪费</p></li>
+<li><p><code>next</code>、<code>complete</code>和<code>error</code>是可选的。按需处理即可，不必全部处理</p></li>
+</ul>
+<p>为了完成上述目标，我们得把传入的匿名 <code>Observer</code> 对象封装在一个 <code>SafeObserver</code> 里以提供上述保障。SafeObserver 的具体实现如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="class SafeObserver {
+  constructor(destination) {
+    this.destination = destination;
+  }
+  
+  next(value) {
+    // 尚未取消订阅，且包含next方法
+    if (!this.isUnsubscribed &amp;&amp; this.destination.next) {
+      try {
+        this.destination.next(value);
+      } catch (err) {
+        // 出现异常时，取消订阅释放资源，再抛出异常
+        this.unsubscribe();
+        throw err;
+      }
+    }
+  }
+  
+  error(err) {
+    // 尚未取消订阅，且包含error方法
+    if (!this.isUnsubscribed &amp;&amp; this.destination.error) {
+      try {
+        this.destination.error(err);
+      } catch (e2) {
+        // 出现异常时，取消订阅释放资源，再抛出异常
+        this.unsubscribe();
+        throw e2;
+      }
+      this.unsubscribe();
+    }
+  }
+
+  complete() {
+    // 尚未取消订阅，且包含complete方法
+    if (!this.isUnsubscribed &amp;&amp; this.destination.complete) {
+      try {
+        this.destination.complete();
+      } catch (err) {
+        // 出现异常时，取消订阅释放资源，再抛出异常
+        this.unsubscribe();
+        throw err;
+      }
+      this.unsubscribe();
+    }
+  }
+  
+  unsubscribe() { // 用于取消订阅
+    this.isUnsubscribed = true;
+    if (this.unsub) {
+      this.unsub();
+    }
+  }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">class</span> SafeObserver {
+  constructor(destination) {
+    <span class="hljs-keyword">this</span>.destination = destination;
+  }
+  
+  next(value) {
+    <span class="hljs-comment">// 尚未取消订阅，且包含next方法</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.isUnsubscribed &amp;&amp; <span class="hljs-keyword">this</span>.destination.next) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">this</span>.destination.next(value);
+      } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-comment">// 出现异常时，取消订阅释放资源，再抛出异常</span>
+        <span class="hljs-keyword">this</span>.unsubscribe();
+        <span class="hljs-keyword">throw</span> err;
+      }
+    }
+  }
+  
+  error(err) {
+    <span class="hljs-comment">// 尚未取消订阅，且包含error方法</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.isUnsubscribed &amp;&amp; <span class="hljs-keyword">this</span>.destination.error) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">this</span>.destination.error(err);
+      } <span class="hljs-keyword">catch</span> (e2) {
+        <span class="hljs-comment">// 出现异常时，取消订阅释放资源，再抛出异常</span>
+        <span class="hljs-keyword">this</span>.unsubscribe();
+        <span class="hljs-keyword">throw</span> e2;
+      }
+      <span class="hljs-keyword">this</span>.unsubscribe();
+    }
+  }
+
+  complete() {
+    <span class="hljs-comment">// 尚未取消订阅，且包含complete方法</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.isUnsubscribed &amp;&amp; <span class="hljs-keyword">this</span>.destination.complete) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">this</span>.destination.complete();
+      } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-comment">// 出现异常时，取消订阅释放资源，再抛出异常</span>
+        <span class="hljs-keyword">this</span>.unsubscribe();
+        <span class="hljs-keyword">throw</span> err;
+      }
+      <span class="hljs-keyword">this</span>.unsubscribe();
+    }
+  }
+  
+  unsubscribe() { <span class="hljs-comment">// 用于取消订阅</span>
+    <span class="hljs-keyword">this</span>.isUnsubscribed = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.unsub) {
+      <span class="hljs-keyword">this</span>.unsub();
+    }
+  }
+}</code></pre>
+<p>myObservable - 使用 SafeObserver</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="function myObservable(observer) {
+  const safeObserver = new SafeObserver(observer); // 创建SafeObserver对象
+  const datasource = new DataSource(); // 创建数据源
+  datasource.ondata = (e) =&gt; safeObserver.next(e);
+  datasource.onerror = (err) =&gt; safeObserver.error(err);
+  datasource.oncomplete = () =&gt; safeObserver.complete();
+
+  safeObserver.unsub = () =&gt; { // 为SafeObserver对象添加unsub方法
+    datasource.destroy();
+  };
+  // 绑定this上下文，并返回unsubscribe方法
+  return safeObserver.unsubscribe.bind(safeObserver); 
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myObservable</span><span class="hljs-params">(observer)</span> </span>{
+  <span class="hljs-keyword">const</span> safeObserver = <span class="hljs-keyword">new</span> SafeObserver(observer); <span class="hljs-comment">// 创建SafeObserver对象</span>
+  <span class="hljs-keyword">const</span> datasource = <span class="hljs-keyword">new</span> DataSource(); <span class="hljs-comment">// 创建数据源</span>
+  datasource.ondata = (e) =&gt; safeObserver.next(e);
+  datasource.onerror = (err) =&gt; safeObserver.error(err);
+  datasource.oncomplete = () =&gt; safeObserver.complete();
+
+  safeObserver.unsub = () =&gt; { <span class="hljs-comment">// 为SafeObserver对象添加unsub方法</span>
+    datasource.destroy();
+  };
+  <span class="hljs-comment">// 绑定this上下文，并返回unsubscribe方法</span>
+  <span class="hljs-keyword">return</span> safeObserver.unsubscribe.bind(safeObserver); 
+}</code></pre>
+<p>使用示例：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="const unsub = myObservable({
+  next(x) { console.log(x); },
+  error(err) { console.error(err); },
+  complete() { console.log(&#39;done&#39;)}
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">const</span> unsub = myObservable({
+  next(x) { <span class="hljs-built_in">console</span>.log(x); },
+  error(err) { <span class="hljs-built_in">console</span>.error(err); },
+  complete() { <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>)}
+});</code></pre>
+<p>具体运行结果，可以查看<a href="http://jsbin.com/kezejiy/2/edit?js,console,output" target="_blank">线上示例</a>。</p>
+<h3 id="articleHeader15">Operators - 也是函数</h3>
+<p>Operator 是一个函数，它接收一个 Observable 对象，然后返回一个新的 Observable 对象。当我们订阅新返回的 Observable 对象时，它内部会自动订阅前一个 Observable 对象。接下来我们来实现常用的 map 操作符：</p>
+<p>Observable 实现：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="class Observable {
+  constructor(_subscribe) {
+    this._subscribe = _subscribe;
+  }
+  
+  subscribe(observer) {
+    const safeObserver = new SafeObserver(observer);
+    safeObserver.unsub = this._subscribe(safeObserver);
+    return safeObserver.unsubscribe.bind(safeObserver);
+  }
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">class</span> Observable {
+  constructor(_subscribe) {
+    <span class="hljs-keyword">this</span>._subscribe = _subscribe;
+  }
+  
+  subscribe(observer) {
+    <span class="hljs-keyword">const</span> safeObserver = <span class="hljs-keyword">new</span> SafeObserver(observer);
+    safeObserver.unsub = <span class="hljs-keyword">this</span>._subscribe(safeObserver);
+    <span class="hljs-keyword">return</span> safeObserver.unsubscribe.bind(safeObserver);
+  }
+}</code></pre>
+<p>map 操作符实现：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="function map(source, project) {
+  return new Observable((observer) =&gt; {
+    const mapObserver = {
+      next: (x) =&gt; observer.next(project(x)),
+      error: (err) =&gt; observer.error(err),
+      complete: () =&gt; observer.complete()
+    };
+    return source.subscribe(mapObserver);
+  });
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span><span class="hljs-params">(source, project)</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Observable((observer) =&gt; {
+    <span class="hljs-keyword">const</span> mapObserver = {
+      next: (x) =&gt; observer.next(project(x)),
+      error: (err) =&gt; observer.error(err),
+      complete: () =&gt; observer.complete()
+    };
+    <span class="hljs-keyword">return</span> source.subscribe(mapObserver);
+  });
+}</code></pre>
+<p>具体运行结果，可以查看<a href="http://jsbin.com/xavaga/2/edit?js,console,output" target="_blank">线上示例</a>。</p>
+<h3 id="articleHeader16">改进 Observable - 支持 Operator 链式调用</h3>
+<p>如果把 <code>Operator</code> 都写成如上那种独立的函数，我们链式代码会逐渐变丑：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="map(map(myObservable, (x) =&gt; x + 1), (x) =&gt; x + 2);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript" style="word-break: break-word; white-space: initial;">map(map(myObservable, (x) =&gt; x + <span class="hljs-number">1</span>), (x) =&gt; x + <span class="hljs-number">2</span>);</code></pre>
+<p>对于上面的代码，想象一下有 5、6 个嵌套着的 <code>Operator</code>，再加上更多、更复杂的参数，基本上就没法儿看了。</p>
+<p>你也可以试下 <a href="https://twitter.com/AppShipIt/status/701806357012471809" target="_blank">Texas Toland</a> 提议的简单版管道实现，合并压缩一个数组的<code>Operator</code>并生成一个最终的<code>Observable</code>，不过这意味着要写更复杂的 <code>Operator</code>，上代码：<a href="http://jsbin.com/vipuqiq/6/edit?js,console,output" target="_blank">JSBin</a>。其实写完后你会发现，代码也不怎么漂亮：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="pipe(myObservable, map(x =&gt; x + 1), map(x =&gt; x + 2));" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript" style="word-break: break-word; white-space: initial;">pipe(myObservable, map(x =&gt; x + <span class="hljs-number">1</span>), map(x =&gt; x + <span class="hljs-number">2</span>));</code></pre>
+<p>理想情况下，我们想将代码用更自然的方式链起来：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="myObservable.map(x =&gt; x + 1).map(x =&gt; x + 2);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript" style="word-break: break-word; white-space: initial;">myObservable.map(x =&gt; x + <span class="hljs-number">1</span>).map(x =&gt; x + <span class="hljs-number">2</span>);</code></pre>
+<p>幸运的是，我们已经有了这样一个 <code>Observable</code> 类，我们可以基于 prototype 在不增加复杂度的情况下支持多 <code>Operators</code> 的链式结构，下面我们采用prototype方式再次实现一下 <code>Observable</code>：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="Observable.prototype.map = function (project) {
+    return new Observable((observer) =&gt; {
+        const mapObserver = {
+            next: (x) =&gt; observer.next(project(x)),
+            error: (err) =&gt; observer.error(err),
+            complete: () =&gt; observer.complete()
+        };
+        return this.subscribe(mapObserver);
+    });
+};" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript">Observable.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(project)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Observable((observer) =&gt; {
+        <span class="hljs-keyword">const</span> mapObserver = {
+            next: (x) =&gt; observer.next(project(x)),
+            error: (err) =&gt; observer.error(err),
+            complete: () =&gt; observer.complete()
+        };
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.subscribe(mapObserver);
+    });
+};</code></pre>
+<p>现在我们终于有了一个还不错的实现。这样实现还有其他好处，例如：可以写子类继承 <code>Observable</code> 类，然后在子类中重写某些内容以优化程序。</p>
+<p>接下来我们来总结一下该部分的内容：Observable 就是函数，它接受 Observer 作为参数，又返回一个函数。如果你也写了一个函数，接收一个 Observer 作为参数，又返回一个函数，那么，它是异步的、还是同步的 ？其实都不是，它就只是一个函数。任何函数的行为都依赖于它的具体实现，所以当你处理一个 Observable 时，就把它当成一个普通函数，里面没有什么黑魔法。当你要构建 Operator 链时，你需要做的其实就是生成一个函数将一堆 Observers 链接在一起，然后让真正的数据依次穿过它们。</p>
+<h2 id="articleHeader17">Rx.Observable.create</h2>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var observable = Rx.Observable
+    .create(function(observer) {
+        observer.next(&#39;Semlinker&#39;); // RxJS 4.x 以前的版本用 onNext
+        observer.next(&#39;Lolo&#39;);
+    });
+    
+// 订阅这个 Observable    
+observable.subscribe(function(value) {
+    console.log(value);
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> observable = Rx.Observable
+    .create(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(observer)</span> </span>{
+        observer.next(<span class="hljs-string">'Semlinker'</span>); <span class="hljs-comment">// RxJS 4.x 以前的版本用 onNext</span>
+        observer.next(<span class="hljs-string">'Lolo'</span>);
+    });
+    
+<span class="hljs-comment">// 订阅这个 Observable    </span>
+observable.subscribe(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(value);
+});</code></pre>
+<p>以上代码运行后，控制台会依次输出 'Semlinker'  和 'Lolo' 两个字符串。</p>
+<p>需要注意的是，很多人认为 RxJS 中的所有操作都是异步的，但其实这个观念是错的。RxJS 的核心特性是它的异步处理能力，但它也是可以用来处理同步的行为。具体示例如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var observable = Rx.Observable
+    .create(function(observer) {
+        observer.next(&#39;Semlinker&#39;); // RxJS 4.x 以前的版本用 onNext
+        observer.next(&#39;Lolo&#39;);
+    });
+    
+console.log(&#39;start&#39;);
+observable.subscribe(function(value) {
+    console.log(value);
+});
+console.log(&#39;end&#39;);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> observable = Rx.Observable
+    .create(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(observer)</span> </span>{
+        observer.next(<span class="hljs-string">'Semlinker'</span>); <span class="hljs-comment">// RxJS 4.x 以前的版本用 onNext</span>
+        observer.next(<span class="hljs-string">'Lolo'</span>);
+    });
+    
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'start'</span>);
+observable.subscribe(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(value);
+});
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'end'</span>);</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="start
+Semlinker
+Lolo
+end" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs sql"><code class="shell"><span class="hljs-operator"><span class="hljs-keyword">start</span>
+Semlinker
+Lolo
+<span class="hljs-keyword">end</span></span></code></pre>
+<p>当然我们也可以用它处理异步行为：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var observable = Rx.Observable
+    .create(function(observer) {
+        observer.next(&#39;Semlinker&#39;); // RxJS 4.x 以前的版本用 onNext
+        observer.next(&#39;Lolo&#39;);
+        
+        setTimeout(() =&gt; {
+            observer.next(&#39;RxJS Observable&#39;);
+        }, 300);
+    })
+    
+console.log(&#39;start&#39;);
+observable.subscribe(function(value) {
+    console.log(value);
+});
+console.log(&#39;end&#39;);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> observable = Rx.Observable
+    .create(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(observer)</span> </span>{
+        observer.next(<span class="hljs-string">'Semlinker'</span>); <span class="hljs-comment">// RxJS 4.x 以前的版本用 onNext</span>
+        observer.next(<span class="hljs-string">'Lolo'</span>);
+        
+        setTimeout(() =&gt; {
+            observer.next(<span class="hljs-string">'RxJS Observable'</span>);
+        }, <span class="hljs-number">300</span>);
+    })
+    
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'start'</span>);
+observable.subscribe(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(value);
+});
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'end'</span>);</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="start
+Semlinker
+Lolo
+end
+RxJS Observable" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs sql"><code class="shell"><span class="hljs-operator"><span class="hljs-keyword">start</span>
+Semlinker
+Lolo
+<span class="hljs-keyword">end</span>
+RxJS Observable</span></code></pre>
+<p>从以上例子中，我们可以得出一个结论 - Observable 可以应用于同步和异步的场合。</p>
+<h2 id="articleHeader18">Observable - Creation Operator</h2>
+<p>RxJS 中提供了很多操作符，用于创建 Observable 对象，常用的操作符如下：</p>
+<ul>
+<li><p>create</p></li>
+<li><p>of</p></li>
+<li><p>from</p></li>
+<li><p>fromEvent</p></li>
+<li><p>fromPromise</p></li>
+<li><p>empty</p></li>
+<li><p>never</p></li>
+<li><p>throw</p></li>
+<li><p>interval</p></li>
+<li><p>timer</p></li>
+</ul>
+<p>上面的例子中，我们已经使用过了 create 操作符，接下来我们来看一下其它的操作符：</p>
+<h3 id="articleHeader19">of</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.of(&#39;Semlinker&#39;, &#39;Lolo&#39;);
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.of(<span class="hljs-string">'Semlinker'</span>, <span class="hljs-string">'Lolo'</span>);
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="Semlinker
+Lolo
+complete!" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs nginx"><code class="shell"><span class="hljs-title">Semlinker</span>
+Lolo
+complete!</code></pre>
+<h3 id="articleHeader20">from</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var arr = [1, 2, 3];
+var source = Rx.Observable.from(arr); // 也支持字符串，如 &quot;Angular 2 修仙之路&quot;
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">var</span> source = Rx.Observable.from(arr); <span class="hljs-comment">// 也支持字符串，如 "Angular 2 修仙之路"</span>
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="1
+2
+3
+complete!" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+complete!</code></pre>
+<h3 id="articleHeader21">fromEvent</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="Rx.Observable.fromEvent(document.querySelector(&#39;button&#39;), &#39;click&#39;);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript" style="word-break: break-word; white-space: initial;">Rx.Observable.fromEvent(<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'button'</span>), <span class="hljs-string">'click'</span>);</code></pre>
+<h3 id="articleHeader22">fromPromise</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable
+  .fromPromise(new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      resolve(&#39;Hello RxJS!&#39;);
+    },3000)
+}));
+  
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable
+  .fromPromise(<span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      resolve(<span class="hljs-string">'Hello RxJS!'</span>);
+    },<span class="hljs-number">3000</span>)
+}));
+  
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="Hello RxJS!
+complete!" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs nginx"><code class="shell"><span class="hljs-title">Hello</span> RxJS!
+complete!</code></pre>
+<h3 id="articleHeader23">empty</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.empty();
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.empty();
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="complete!" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs"><code style="word-break: break-word; white-space: initial;">complete!</code></pre>
+<p>empty 操作符返回一个空的 Observable 对象，如果我们订阅该对象，它会立即返回 complete 信息。</p>
+<h3 id="articleHeader24">never</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.never();
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.never();
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(error);
+    }
+});</code></pre>
+<p>never 操作符会返回一个无穷的 Observable，当我们订阅它后，什么事情都不会发生，它是一个一直存在却什么都不做的 Observable 对象。</p>
+<h3 id="articleHeader25">throw</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.throw(&#39;Oop!&#39;);
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(&#39;Throw Error: &#39; + error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.throw(<span class="hljs-string">'Oop!'</span>);
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Throw Error: '</span> + error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="Throw Error: Oop!" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs nginx"><code class="shell" style="word-break: break-word; white-space: initial;"><span class="hljs-title">Throw</span> Error: Oop!</code></pre>
+<p>throw 操作如，只做一件事就是抛出异常。</p>
+<h3 id="articleHeader26">interval</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.interval(1000);
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(&#39;Throw Error: &#39; + error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.interval(<span class="hljs-number">1000</span>);
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Throw Error: '</span> + error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="0
+1
+2
+..." title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs"><code class="shell">0
+1
+2
+...</code></pre>
+<p>interval 操作符支持一个数值类型的参数，用于表示定时的间隔。上面代码表示每隔 1s，会输出一个递增的值，初始值从 0 开始。</p>
+<h3 id="articleHeader27">timer</h3>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.timer(1000, 5000);
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(&#39;Throw Error: &#39; + error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.timer(<span class="hljs-number">1000</span>, <span class="hljs-number">5000</span>);
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Throw Error: '</span> + error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="0 # 1s后
+1 # 5s后
+2 # 5s后
+..." title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs coffeescript"><code class="shell"><span class="hljs-number">0</span> <span class="hljs-comment"># 1s后</span>
+<span class="hljs-number">1</span> <span class="hljs-comment"># 5s后</span>
+<span class="hljs-number">2</span> <span class="hljs-comment"># 5s后</span>
+...</code></pre>
+<p>timer 操作符支持两个参数，第一个参数用于设定发送第一个值需等待的时间，第二个参数表示第一次发送后，发送其它值的间隔时间。此外，timer 操作符也可以只传递一个参数，具体如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.timer(1000);
+
+source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(&#39;Throw Error: &#39; + error);
+    }
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.timer(<span class="hljs-number">1000</span>);
+
+source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Throw Error: '</span> + error);
+    }
+});</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="0
+complete!" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs"><code class="shell">0
+complete!</code></pre>
+<h2 id="articleHeader28">Subscription</h2>
+<p>有些时候对于一些 Observable 对象 (如通过 interval、timer 操作符创建的对象)，当我们不需要的时候，要释放相关的资源，以避免资源浪费。针对这种情况，我们可以调用 <code>Subscription</code> 对象的 <code>unsubscribe</code> 方法来释放资源。具体示例如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.timer(1000, 1000);
+
+// 取得subscription对象
+var subscription = source.subscribe({
+    next: function(value) {
+        console.log(value);
+    },
+    complete: function() {
+        console.log(&#39;complete!&#39;);
+    },
+    error: function(error) {
+        console.log(&#39;Throw Error: &#39; + error);
+    }
+});
+
+setTimeout(() =&gt; {
+    subscription.unsubscribe();
+}, 5000);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.timer(<span class="hljs-number">1000</span>, <span class="hljs-number">1000</span>);
+
+<span class="hljs-comment">// 取得subscription对象</span>
+<span class="hljs-keyword">var</span> subscription = source.subscribe({
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete!'</span>);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Throw Error: '</span> + error);
+    }
+});
+
+setTimeout(() =&gt; {
+    subscription.unsubscribe();
+}, <span class="hljs-number">5000</span>);</code></pre>
+<h2 id="articleHeader29">RxJS - Observer</h2>
+<p>Observer (观察者) 是一个包含三个方法的对象，每当 Observable 触发事件时，便会自动调用观察者的对应方法。</p>
+<p><a href="http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html" target="_blank">Observer 接口定义</a>：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="interface Observer&lt;T&gt; {
+  closed?: boolean; // 标识是否已经取消对Observable对象的订阅
+  next: (value: T) =&gt; void;
+  error: (err: any) =&gt; void;
+  complete: () =&gt; void;
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs coffeescript"><code class="typescript">interface Observer&lt;T&gt; {
+  closed?: boolean; <span class="hljs-regexp">//</span> 标识是否已经取消对Observable对象的订阅
+  <span class="hljs-attribute">next</span>: <span class="hljs-function"><span class="hljs-params">(value: T)</span> =&gt;</span> <span class="hljs-reserved">void</span>;
+  <span class="hljs-attribute">error</span>: <span class="hljs-function"><span class="hljs-params">(err: any)</span> =&gt;</span> <span class="hljs-reserved">void</span>;
+  <span class="hljs-attribute">complete</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-reserved">void</span>;
+}</code></pre>
+<p>Observer 中的三个方法的作用：</p>
+<ul>
+<li><p>next - 每当 Observable 发送新值的时候，next 方法会被调用</p></li>
+<li><p>error - 当 Observable 内发生错误时，error 方法就会被调用</p></li>
+<li><p>complete - 当 Observable 数据终止后，complete 方法会被调用。在调用 complete 方法之后，next 方法就不会再次被调用</p></li>
+</ul>
+<p>接下来我们来看个具体示例：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var observable = Rx.Observable
+    .create(function(observer) {
+            observer.next(&#39;Semlinker&#39;);
+            observer.next(&#39;Lolo&#39;);
+            observer.complete();
+            observer.next(&#39;not work&#39;);
+    });
+    
+// 创建一个观察者
+var observer = {
+    next: function(value) {
+        console.log(value);
+    },
+    error: function(error) {
+        console.log(error);
+    },
+    complete: function() {
+        console.log(&#39;complete&#39;);
+    }
+}
+
+// 订阅已创建的observable对象
+observable.subscribe(observer);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> observable = Rx.Observable
+    .create(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(observer)</span> </span>{
+            observer.next(<span class="hljs-string">'Semlinker'</span>);
+            observer.next(<span class="hljs-string">'Lolo'</span>);
+            observer.complete();
+            observer.next(<span class="hljs-string">'not work'</span>);
+    });
+    
+<span class="hljs-comment">// 创建一个观察者</span>
+<span class="hljs-keyword">var</span> observer = {
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    },
+    error: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(error);
+    },
+    complete: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete'</span>);
+    }
+}
+
+<span class="hljs-comment">// 订阅已创建的observable对象</span>
+observable.subscribe(observer);</code></pre>
+<p>以上代码运行后，控制台的输出结果：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="Semlinker
+Lolo
+complete" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs nginx"><code class="shell"><span class="hljs-title">Semlinker</span>
+Lolo
+complete</code></pre>
+<p>上面的例子中，我们可以看出，complete 方法执行后，next 就会失效，所以不会输出 <code>not work</code>。</p>
+<p>另外观察者可以不用同时包含 next、complete、error 三种方法，它可以只包含一个 next 方法，具体如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var observer = {
+    next: function(value) {
+        console.log(value);
+    }
+};" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> observer = {
+    next: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(value);
+    }
+};</code></pre>
+<p>有时候 Observable 可能是一个无限的序列，例如 click 事件，对于这种场景，complete 方法就永远不会被调用。</p>
+<p>我们也可以在调用 Observable 对象的 <code>subscribe</code> 方法时，依次传入 next、error、complete 三个函数，来创建观察者：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="observable.subscribe(
+    value =&gt; { console.log(value); },
+    error =&gt; { console.log(&#39;Error: &#39;, error); },
+    () =&gt; { console.log(&#39;complete&#39;); }
+);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript">observable.subscribe(
+    value =&gt; { <span class="hljs-built_in">console</span>.log(value); },
+    error =&gt; { <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Error: '</span>, error); },
+    () =&gt; { <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'complete'</span>); }
+);</code></pre>
+<h2 id="articleHeader30">Pull vs Push</h2>
+<p>Pull 和 Push 是数据生产者和数据的消费者两种不同的交流方式。</p>
+<h3 id="articleHeader31">什么是Pull?</h3>
+<p>在 "拉" 体系中，数据的消费者决定何时从数据生产者那里获取数据，而生产者自身并不会意识到什么时候数据将会被发送给消费者。</p>
+<p>每一个 JavaScript 函数都是一个 "拉" 体系，函数是数据的生产者，调用函数的代码通过 ''拉出" 一个单一的返回值来消费该数据。</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="const add = (a, b) =&gt; a + b;
+let sum = add(3, 4);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">const</span> add = (a, b) =&gt; a + b;
+<span class="hljs-keyword">let</span> sum = add(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);</code></pre>
+<p>ES6介绍了 <a href="http://es6.ruanyifeng.com/#docs/iterator" target="_blank">iterator迭代器</a> 和 <a href="http://es6.ruanyifeng.com/#docs/generator" target="_blank">Generator生成器</a> — 另一种 "拉" 体系，调用 <code>iterator.next()</code> 的代码是消费者，可从中拉取<em>多个值</em>。</p>
+<h3 id="articleHeader32">什么是Push？</h3>
+<p>在 "推" 体系中，数据的生产者决定何时发送数据给消费者，消费者不会在接收数据之前意识到它将要接收这个数据。</p>
+<p><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank">Promise(承诺)</a> 是当今 JS 中最常见的 "推" 体系，一个Promise (数据的生产者)发送一个 resolved value (成功状态的值)来执行一个回调(数据消费者)，但是不同于函数的地方的是：Promise 决定着何时数据才被推送至这个回调函数。</p>
+<p>RxJS 引入了 Observables (可观察对象)，一个全新的 "推" 体系。一个可观察对象是一个产生多值的生产者，当产生新数据的时候，会主动 "推送给" Observer (观察者)。</p>
+<table>
+<thead><tr>
+<th> </th>
+<th>生产者</th>
+<th>消费者</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>pull拉</td>
+<td>被请求的时候产生数据</td>
+<td>决定何时请求数据</td>
+</tr>
+<tr>
+<td>push推</td>
+<td>按自己的节奏生产数据</td>
+<td>对接收的数据进行处理</td>
+</tr>
+</tbody>
+</table>
+<p>接下来我们来看张图，从而加深对上面概念的理解：</p>
+<p><img data-src="/img/bVLclr?w=1000&amp;h=400" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/squares.svg" style="cursor: pointer;"></p>
+<h2 id="articleHeader33">Observable vs Promise</h2>
+<p>Observable（<strong>可观察对象</strong>）是基于推送（<strong>Push</strong>）运行时执行（<strong>lazy</strong>）的多值集合。</p>
+<table>
+<thead><tr>
+<th>MagicQ</th>
+<th>单值</th>
+<th>多值</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>拉取(Pull)</strong></td>
+<td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Function" target="_blank">函数</a></td>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank">遍历器</a></td>
+</tr>
+<tr>
+<td><strong>推送(Push)</strong></td>
+<td><a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise" target="_blank">Promise</a></td>
+<td><a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html" target="_blank">Observable</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Promise</p>
+<ul>
+<li><p>返回单个值</p></li>
+<li><p>不可取消的</p></li>
+</ul>
+</li>
+<li>
+<p>Observable</p>
+<ul>
+<li><p>随着时间的推移发出多个值</p></li>
+<li><p>可以取消的</p></li>
+<li><p>支持 map、filter、reduce 等操作符</p></li>
+<li><p>延迟执行，当订阅的时候才会开始执行</p></li>
+</ul>
+</li>
+</ul>
+<h2 id="articleHeader34">延迟计算 &amp; 渐进式取值</h2>
+<h3 id="articleHeader35">延迟计算</h3>
+<p>所有的 Observable 对象一定会等到订阅后，才开始执行，如果没有订阅就不会执行。</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.from([1,2,3,4,5]);
+var example = source.map(x =&gt; x + 1);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.from([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]);
+<span class="hljs-keyword">var</span> example = source.map(x =&gt; x + <span class="hljs-number">1</span>);</code></pre>
+<p>上面的示例中，因为 example 对象还未被订阅，所以不会进行运算。这跟数组不一样，具体如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = [1,2,3,4,5];
+var example = source.map(x =&gt; x + 1); " title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];
+<span class="hljs-keyword">var</span> example = source.map(x =&gt; x + <span class="hljs-number">1</span>); </code></pre>
+<p>以上代码运行后，example 中就包含已运算后的值。</p>
+<h3 id="articleHeader36">渐进式取值</h3>
+<p>数组中的操作符如：filter、map  每次都会完整执行并返回一个新的数组，才会继续下一步运算。具体示例如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = [1,2,3,4,5];
+var example = source
+                .filter(x =&gt; x % 2 === 0) // [2, 4]
+                  .map(x =&gt; x + 1) // [3, 5]" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];
+<span class="hljs-keyword">var</span> example = source
+                .filter(x =&gt; x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) <span class="hljs-comment">// [2, 4]</span>
+                  .map(x =&gt; x + <span class="hljs-number">1</span>) <span class="hljs-comment">// [3, 5]</span></code></pre>
+<p>关于数组中的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank">map</a>、<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank">filter</a> 的详细信息，可以参考 - <a href="https://segmentfault.com/a/1190000008794344">RxJS Functional Programming</a></p>
+<p>为了更好地理解数组操作符的运算过程，我们可以参考下图：</p>
+<p><img data-src="/img/bVLlUP?w=480&amp;h=300" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/squares.svg" style="cursor: pointer;"><br><a href="https://github.com/semlinker/semlinker.github.io/blob/master/array-operator.gif?raw=true" target="_blank">查看原图</a></p>
+<p>虽然 Observable 运算符每次都会返回一个新的 Observable 对象，但每个元素都是渐进式获取的，且每个元素都会经过操作符链的运算后才输出，而不会像数组那样，每个阶段都得完整运算。具体示例如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var source = Rx.Observable.from([1,2,3,4,5]);
+var example = source
+              .filter(x =&gt; x % 2 === 0)
+              .map(x =&gt; x + 1)
+
+example.subscribe(console.log);" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> source = Rx.Observable.from([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]);
+<span class="hljs-keyword">var</span> example = source
+              .filter(x =&gt; x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>)
+              .map(x =&gt; x + <span class="hljs-number">1</span>)
+
+example.subscribe(<span class="hljs-built_in">console</span>.log);</code></pre>
+<p>以上代码的执行过程如下：</p>
+<ul>
+<li><p>source 发出 1，执行 filter 过滤操作，返回 false，该值被过滤掉</p></li>
+<li><p>source 发出 2，执行 filter 过滤操作，返回 true，该值被保留，接着执行 map 操作，值被处理成 3，最后通过 console.log 输出</p></li>
+<li><p>source 发出 3，执行 filter 过滤操作，返回 false，该值被过滤掉</p></li>
+<li><p>source 发出 4，执行 filter 过滤操作，返回 true，该值被保留，接着执行 map 操作，值被处理成 5，最后通过 console.log 输出</p></li>
+<li><p>source 发出 5，执行 filter 过滤操作，返回 false，该值被过滤掉</p></li>
+</ul>
+<p>为了更好地理解 Observable 操作符的运算过程，我们可以参考下图：</p>
+<p><img data-src="/img/bVLlUU?w=480&amp;h=300" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/squares.svg" style="cursor: pointer;"><br><a href="https://github.com/semlinker/semlinker.github.io/blob/master/observable-operator.gif?raw=true" target="_blank">查看原图</a></p>
+<h2 id="articleHeader37">学习资源</h2>
+<ul>
+<li><p><a href="https://buctwbzs.gitbooks.io/rxjs/content/" target="_blank">RxJS 中文文档</a></p></li>
+<li><p><a href="http://rxmarbles.com/" target="_blank">RxMarbles</a></p></li>
+<li><p><a href="https://rxjs-diagrams.com/" target="_blank">RxJS Diagrams</a></p></li>
+<li><p><a href="https://github.com/staltz/rxjs-training" target="_blank">rxjs-training</a></p></li>
+<li><p><a href="https://github.com/JayKan/RxJS-Playground" target="_blank">RxJS-Playground</a></p></li>
+</ul>
+<h2 id="articleHeader38">参考资源</h2>
+<ul>
+<li><p><a href="http://www.runoob.com/design-pattern/observer-pattern.html" target="_blank">观察者模式</a></p></li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank">MDN - 迭代器和生成器</a></p></li>
+<li><p><a href="https://github.com/joeyguo/blog/issues/11" target="_blank">构建流式应用—RxJS详解</a></p></li>
+<li><p><a href="https://fe.ele.me/let-us-learn-rxjs/" target="_blank">让我们一起来学习RxJS</a></p></li>
+<li><p><a href="https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87#.v3c69zfwd" target="_blank">Learning Observable By Building Observable</a></p></li>
+<li><p><a href="http://ithelp.ithome.com.tw/articles/10186832" target="_blank">30天精通RxJS - 什么是Observable</a></p></li>
+</ul>
+<hr>
+
+                </div>
+                                                
+                <div class="clearfix mt10">
+
+                    <ul class="article-operation list-inline pull-left">
+                        <li><a href="https://segmentfault.com/a/1190000008809168" class="text-muted">3月23日发布</a></li>
+                                                                                                                            <li class="dropdown js__content-ops" data-module="article" data-id="1190000008809168" data-typetext="文章">
+                                <a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown">更多<b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    <li><a href="https://segmentfault.com/a/1190000008809168#911" data-toggle="modal" data-target="#911" data-action="report">举报</a></li>
+                                                                            
+                                                                                                                        
+                                        
+                                                                    </ul>
+                            </li>
+                                            </ul>
+                </div>
+                <div class="mt10 text-center"><button type="button" id="mainLike" data-id="1190000008809168" class="btn btn-success btn-lg mr15 ">
+                                2 推荐
+                            </button><button type="button" id="mainBookmark" data-type="article" data-id="1190000008809168" class="btn btn-default btn-lg mr15 ">
+                                收藏
+                            </button></div>
+                                    <div class="recommend-post pt30 mt40 mb30 border-top">
+                        <div class="row">
+                            <div class="col-md-8">
+                                                                    <h4 class="mt0">你可能感兴趣的文章</h4>
+                                    <ul class="widget-links list-unstyled">
+                                                                                    <li class="widget-links__item">
+                                                <a href="https://segmentfault.com/a/1190000006984440" title="Angular2项目开发中所遇问题及解决方案记录(一)">Angular2项目开发中所遇问题及解决方案记录(一)</a>
+                                                <small class="text-muted">
+                                                    3 收藏，1.2k
+                                                    浏览
+                                                </small>
+                                            </li>
+                                                                                    <li class="widget-links__item">
+                                                <a href="https://segmentfault.com/a/1190000004285036" title="First angular 2 app">First angular 2 app</a>
+                                                <small class="text-muted">
+                                                    4 收藏，602
+                                                    浏览
+                                                </small>
+                                            </li>
+                                                                                    <li class="widget-links__item">
+                                                <a href="https://segmentfault.com/a/1190000008041795" title="angular2 jsonp跨域请求 express输出jsonp数据">angular2 jsonp跨域请求 express输出jsonp数据</a>
+                                                <small class="text-muted">
+                                                    301
+                                                    浏览
+                                                </small>
+                                            </li>
+                                                                            </ul>
+                                                            </div>
+                            <div class="col-md-4">
+                                                                    <div class="article-license">
+                                                                                                                            <img class="mb5" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/creativecommons-cc.svg" height="24"><br>
+                                                                                <div class="license-item text-muted">
+                                            本作品采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" class="alert-link">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可
+                                            。
+                                        </div>
+
+                                    </div>
+                                                            </div>
+                        </div>
+
+                    </div>
+                                <!-- <ul class="list-unstyled text-muted mt30">
+                                        <li>上一篇：<a href="/a/1190000008809095">Angular 2 DomSanitizer</a></li>
+                                                            <li class="mt5">下一篇：<a href="/a/1190000008834251">RxJS Operators 详解</a></li>
+                                    </ul> -->
+
+                <h2 class="h4 post-comment-title"></h2>
+                
+        <div class="comments--news comments--default" data-id="1190000008809168" data-user-id="" data-author-id="1030000008625513 " data-is-admin="null">
+        <div class="mb10">
+            <strong class="comments-stat pull-left mr10">评论</strong>
+            <div class="btn-group comments-sort">
+                <button type="button" class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <span class="comments-sort-text">默认排序</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:;" data-sort="default">默认排序</a></li>
+                    <li><a href="javascript:;" data-sort="asc">时间排序</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="comments-container">
+                                <div class="comments-list">
+            </div>
+    <div class="comments-loading hide">载入中...</div>
+    <div class="comments-more hide"><a href="javascript:;">显示更多评论</a></div>
+
+                        <div class="comments-box">
+                <div class="pull-left">
+                    <img class="avatar-32 " src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/user-128.png" alt="">
+                </div>
+                <div class="comments-box-content">
+                    <form action="https://segmentfault.com/api/article/[id]/comments/add">
+                        <div class="form-group mb0">
+                                            <textarea name="text" rows="3" class="form-control" placeholder="文明社会，理性评论"></textarea>
+
+                            <div class="mt15 text-right">
+                                <button type="button" class="hide"></button>
+                                <button class=" btn btn-primary" type="button">发布评论</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+                    </div>
+    </div>
+
+
+
+
+
+
+                                    
+                
+            </div><!-- /.main -->
+
+
+            <div class="col-xs-12 col-md-3 side">
+                <div class="sfad-sidebar">
+      <div class="sfad-item">
+    <ins><style>
+.sfad-item ins {
+position: relative;
+display: inline-block;
+}
+.ad-sign {
+position: absolute;
+right: 8px;
+bottom: 8px;
+padding: 0 3px;
+background: rgba(0,0,0,.15);
+color: #fff;
+font-size: 12px;
+text-decoration: none;
+height: 16px;
+line-height: 16px;
+border-radius: 3px;
+}
+</style><a href="https://sponsor.segmentfault.com/ck.php?oaparams=2__bannerid=132__zoneid=2__cb=a0d0d7ded0__oadest=https%3A%2F%2Fsegmentfault.com%2Fuser%2Flogin" target="_blank"><img src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/4ea23eebe5bf3d21b6a8cfe99591a734.gif" width="255" height="165" alt="" title="" border="0"></a><div id="beacon_a0d0d7ded0" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div><span class="ad-sign">广告</span></ins>
+    <button class="close" type="button" aria-hidden="true">×</button>
+</div>
+
+  </div>
+
+
+                <div class="widget-box widget-box--blog-info">
+                    <div class="blog__sidebar-author ">
+                                                    <button type="button" class="btn btn-sm btn-success follow-user ml10 pull-right" data-do="follow" data-type="user" data-id="1030000008625513">关注作者
+                            </button>
+                        
+                        <div class="article__widget--author">
+                            <a href="https://segmentfault.com/u/semlinker_58c0ca59406cd">
+                                <img class="avatar-40" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/483735741-58c0cb69d67b6_big64" alt="semlinker">
+                            </a>
+                            <a class="article__widget-author-name" href="https://segmentfault.com/u/semlinker_58c0ca59406cd">
+                                <strong>semlinker</strong>
+                            </a>
+                            <p class="article__widget-author-text-muted mb0">
+                                <span>315 声望</span>
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+                                        <div class="blog__sidebar-blog-name">
+                        <p class="article__widget-author-text-muted mt15 mb5">发布于专栏</p>
+
+                        <h4 class="fz16"><a href="https://segmentfault.com/blog/fer-angular2">Angular 2 修仙之路</a></h4>
+                        <p class="article__widget-author-desc">生活在混合应用的世界中，迷失在 Angular 2 和 ionic 2 的道路上...</p>
+
+                        <p>
+                            <span class="article__widget-author-text-muted">40 人关注</span>
+                            
+                                                                    <button type="button mb20" class="btn btn-sm btn-default follow-article pull-right" data-do="follow" data-type="blog" data-id="1200000008625763">关注专栏
+                                    </button>
+                                
+                                                    </p>
+
+                    </div>
+                    
+
+                </div>
+
+
+                
+                    <div data-type="widget" data-api="/api/bookmarkArchive/hots" data-api-overwrite="/api/bookmarkArchive/1190000008809168/related">
+        <script src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/hm.js"></script><script async="" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/analytics.js"></script><script type="text/template">
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 <a id="widgetBookmarkRefresh" class="userstab pull-right"
+                                                          href="javascript:;">换一组</a></h4>
+                <ul class="widget-links list-unstyled media">
+                    <% _.each(data,function(d){ %>
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-<%= d.id%19 %> mr10" src="https://static.segmentfault.com/v-58dfce02/global/img/pattern/<%= d.id%10 ? d.id%10 : 10 %>.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="<%- d.url %>"><%= d.name %></a>
+                            <p class="mb0">
+                                <span><%- d.num %></span> 个条目 <span class="division">|</span> <span><%- d.followers %></span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </script>
+    
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 <a id="widgetBookmarkRefresh" class="userstab pull-right" href="javascript:;">换一组</a></h4>
+                <ul class="widget-links list-unstyled media">
+                    
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-1 mr10" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/4.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="https://segmentfault.com/bookmark/1230000007235654">rxjs</a>
+                            <p class="mb0">
+                                <span>5</span> 个条目 <span class="division">|</span> <span>0</span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-5 mr10" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/6.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="https://segmentfault.com/bookmark/1230000007212896">RxJS</a>
+                            <p class="mb0">
+                                <span>9</span> 个条目 <span class="division">|</span> <span>5</span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-2 mr10" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/4.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="https://segmentfault.com/bookmark/1230000006049504">RXJS</a>
+                            <p class="mb0">
+                                <span>4</span> 个条目 <span class="division">|</span> <span>0</span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+                <div class="widget-share__full" data-text="Observable详解" data-url="https://segmentfault.com/a/1190000008809168" data-shorturl="http://sfau.lt/b5K7Pw"><div style="margin-bottom:10px;">分享扩散：</div><div class="widget-share-network sharer-0" style="display: block;"><ul class="sn-inline"><li data-network="weibo"><a href="javascript:void(0);" class="entypo-weibo icon-sn-weibo share-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至新浪微博">新浪微博</a></li><li data-network="wechart"><a href="javascript:void(0);" class="entypo-wechart icon-sn-weixin share-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至微信">微信</a></li><li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Twitter">Twitter</a></li><li data-network="facebook"><a href="javascript:void(0);" class="entypo-facebook icon-sn-facebook share-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Facebook">Facebook</a></li></ul></div><a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="https://segmentfault.com/a/1190000008809168" data-shorturl="http://sfau.lt/b5K7Pw"><span class="icon-sn-dotted" data-original-title="" title=""></span><strong class="visible-xs-inline">•••</strong></a></div>
+
+                <div class="post-nav hidden-xs side-outline hidden-sm fixed" style="display: block; width: 255px; top: 0px;">
+                    <div class="panel panel-default widget-outline">
+                        <div class="panel-heading">文章目录</div>
+                        <div class="panel-body">
+                            <div class="nav-body" style="top: 0px;">
+                                <div class="highlight-title" style="display: block; top: 351px; height: 27px;"></div>
+                                <ul class="articleIndex"><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader0">Observer Pattern</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader1">观察者模式定义</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader2">观察者模式优缺点</a></li><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader3">观察者模式的应用</a></li><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader4">观察者模式实战</a></li></ul></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader5">Iterator Pattern</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader6">迭代器模式定义</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader7">迭代器模式的优缺点</a></li><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader8">ECMAScript 迭代器</a></li><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader9">ES 5 迭代器</a></li><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader10">ES 6 迭代器</a></li></ul></li><li class=""><a href="https://segmentfault.com/a/1190000008809168#articleHeader11">Observable</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader12">Proposal Observable</a></li><li class="active"><a href="https://segmentfault.com/a/1190000008809168#articleHeader13">自定义 Observable</a></li><li style="list-style:none;"><ul><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader14">SafeObserver - 更好的 Observer</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader15">Operators - 也是函数</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader16">改进 Observable - 支持 Operator 链式调用</a></li></ul></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader17">Rx.Observable.create</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader18">Observable - Creation Operator</a></li><li style="list-style:none;"><ul><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader19">of</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader20">from</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader21">fromEvent</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader22">fromPromise</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader23">empty</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader24">never</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader25">throw</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader26">interval</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader27">timer</a></li></ul></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader28">Subscription</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader29">RxJS - Observer</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader30">Pull vs Push</a></li><li style="list-style:none;"><ul><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader31">什么是Pull?</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader32">什么是Push？</a></li></ul></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader33">Observable vs Promise</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader34">延迟计算 &amp; 渐进式取值</a></li><li style="list-style:none;"><ul><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader35">延迟计算</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader36">渐进式取值</a></li></ul></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader37">学习资源</a></li><li><a href="https://segmentfault.com/a/1190000008809168#articleHeader38">参考资源</a></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.side -->
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="https://segmentfault.com/a/1190000008809168" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$(&#39;#shareToWeiboModal&#39;).modal(&#39;hide&#39;)">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+<script type="text/template" id="regNext">
+        <div class="row flex-vertical-center">
+        <div class="col-md-12">
+            <p class="mb0" style="font-size: 14px; margin-right:50px; font-family: Source Code Pro,Consolas,Menlo,Monaco,Courier New,monospace;">
+                    为了理解递归，则必须首先理解递归。
+            </p>
+            <button class="btn btn-primary SFLogin mr10"
+                    onclick='ga("send", "event", "join button", "clicked", "footer welcome popup");'>投入组织怀抱
+            </button>
+            <button class="btn  btn-default  tomorrow"><img width="22" src="https://static.segmentfault.com/v-58dfce02/global/img/emojis/mengbi.jpg"/></button>
+        </div>
+
+    </div>
+</script>
+
+<div class="widget-register widget-welcome-question mt20 hidden-xs hidden-sm widget-welcome widget-register-slideUp">
+    <div class="container">
+        <div class="row flex-vertical-center">
+            <div class="col-sm-12 col-md-8">
+                <p class="mb0">
+                                                                你好！看起来你挺喜欢这个内容，但是你还没有注册帐号。 <br><br>当你创建了帐号，我们能准确地追踪你关注的问题，在有新答案或内容的时候收到网页和邮件通知。<br>还能直接向作者咨询更多细节。如果上面的内容有帮助，记得点赞 (♥◠‿◠)ﾉ 表示感谢。
+                                    </p>
+
+            </div>
+            <div class="col-sm-12 col-lg-3 col-lg-offset-1 col-md-4">
+                <button class="btn btn-primary btn-lg SFLogin  mr10" onclick="ga(&quot;send&quot;, &quot;event&quot;, &quot;join button&quot;, &quot;clicked&quot;, &quot;footer welcome popup&quot;);">立即注册
+                </button>
+                <button class="btn btn-lg btn-default  tomorrow">明天提醒我</button>
+            </div>
+            <div style="position: absolute;transform: scale(0.5,0.5) translate(300%,-60%);">
+                <img src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/welcome@2x.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal widget-911" id="911" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>网站相关</dt>
+                <dd><a href="https://segmentfault.com/about">关于我们</a></dd>
+                <dd><a href="https://segmentfault.com/tos">服务条款</a></dd>
+                <dd><a href="https://segmentfault.com/faq">帮助中心</a></dd>
+                <dd><a href="https://segmentfault.com/repu">声望与权限</a></dd>
+                <dd><a href="https://segmentfault.com/markdown">编辑器语法</a></dd>
+                <dd><a href="https://weekly.segmentfault.com/">每周精选</a></dd>
+                <dd><a href="https://segmentfault.com/app">App 下载</a></dd>
+                <dd><a href="https://segmentfault.com/community">社区服务中心</a></dd>
+            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>联系合作</dt>
+                <dd><a href="https://segmentfault.com/contact">联系我们</a></dd>
+                <dd><a href="https://segmentfault.com/hiring">加入我们</a></dd>
+                <dd><a href="https://segmentfault.com/link">合作伙伴</a></dd>
+                <dd><a href="https://segmentfault.com/press">媒体报道</a></dd>
+                <dd><a href="https://board.segmentfault.com/">建议反馈</a></dd>
+                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>常用链接</dt>
+                                                <dd><a href="https://chrome.google.com/webstore/detail/segmentfault-%E7%AC%94%E8%AE%B0/pjklfdmleagfaekibdccmhlhellefcfo" target="_blank">笔记插件: Chrome</a></dd>
+                                                                <dd><a href="https://addons.mozilla.org/zh-CN/firefox/addon/sf-note-ext/" target="_blank">笔记插件: Firefox</a></dd>
+                                                                <dd>订阅：<a href="https://segmentfault.com/feeds">问答</a> / <a href="https://segmentfault.com/feeds/blogs">文章</a></dd>
+                                                                <dd><a href="https://mirrors.segmentfault.com/" target="_blank">文档镜像</a></dd>
+                                                                <dd><a href="https://segmentfault.com/blog/interview" target="_blank">社区访谈</a></dd>
+                                                                <dd><a href="https://segmentfault.com/d-day" target="_blank">D-DAY 技术沙龙</a></dd>
+                                                                <dd><a href="https://segmentfault.com/hackathon" target="_blank">黑客马拉松 Hackathon</a></dd>
+                                                                <dd><a href="https://namebeta.com/" target="_blank">域名搜索注册</a></dd>
+                                                                <dd><a href="https://shop165859711.taobao.com/" target="_blank">周边店铺</a></dd>
+                                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>关注我们</dt>
+                                <dd><a href="https://github.com/SegmentFault" target="_blank">Github</a></dd>
+                                <dd><a href="https://twitter.com/segment_fault" target="_blank">Twitter</a></dd>
+                                <dd><a href="http://weibo.com/segmentfault" target="_blank">新浪微博</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_team" target="_blank">团队日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/community_admin" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_news" target="_blank">市场运营日志</a></dd>
+                            </dl>
+            <dl class="col-sm-4 site-link" id="license">
+                <dt>内容许可</dt>
+                <dd>除特别说明外，用户内容均采用 <a rel="license" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可
+                </dd>
+                <dd>本站由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 提供 CDN 存储服务
+                </dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            Copyright © 2011-2017 SegmentFault. 当前呈现版本 17.02.05<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="border-bottom" href="https://segmentfault.com/a/1190000008809168#">回顶部</a>
+
+    <div class="qrcodeWraper">
+        <a href="https://segmentfault.com/app#qrcode"><span class="glyphicon glyphicon-qrcode"></span></a>
+        <img id="qrcode" class="border" alt="sf-wechat" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/appQrcode.png">
+
+        <p class="qrcode-text">扫扫下载 App</p>
+    </div>
+</div>
+
+<div class="app-promotion-bar">
+    <a href="javascript:;"><i class="fa fa-close close"></i></a>
+    <div class="icon"></div>
+    <h5 class="title h5">SegmentFault</h5>
+    <p class="describe">一起探索更多未知</p>
+    <a class="download-btn btn btn-sm btn-primary" href="https://segmentfault.com/app#qrcode">下载 App</a>
+</div>
+
+<script id="loginModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-4 col-sm-12 col-md-push-7 login-wrap">
+            <h1 class="h4 text-muted login-title">用户登录</h1>
+            <form action="/api/user/login" method="POST" role="form" class="mt30">
+                <div class="form-group">
+                    <label for="username" class="control-label">手机号 或 Email</label>
+                    <input type="text" class="form-control" name="username" required placeholder="11 位手机号 或 Email"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">密码</label><span class="pull-right"><a
+                                href="/user/forgot">忘记密码</a></span>
+                    <input type="password" class="form-control" name="password" required placeholder="密码">
+                </div>
+                <div class="form-group clearfix">
+                    <div class="checkbox pull-left">
+                        <label><input name="remember" type="checkbox" value="1" checked> 记住登录状态</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right pl20 pr20"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <p class="h4 text-muted visible-xs-block h4">快速登录</p>
+            <div class="widget-login mt30">
+                <p class="text-muted mt5 mr10 pull-left hidden-xs">快速登录</p>
+                <a href="/user/oauth/google" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                            class="icon-sn-google"></span> <strong class="visible-xs-inline">Google 账号</strong></a>
+                <a href="/user/oauth/github" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                            class="icon-sn-github"></span> <strong class="visible-xs-inline">Github 账号</strong></a>
+                <a href="/user/oauth/weibo" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                            class="icon-sn-weibo"></span> <strong class="visible-xs-inline">新浪微博账号</strong></a>
+                <a href="/user/oauth/qq" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                            class="icon-sn-qq"></span> <strong class="visible-xs-inline">QQ 账号</strong></a>
+                <a href="/user/oauth/weixin" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                            class="icon-sn-weixin"></span> <strong class="visible-xs-inline">微信账号</strong></a>
+                <a href="/user/oauth/linkedin" class=""
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                            class="icon-sn-linkedin"></span> <strong class="visible-xs-inline">LinkedIn 账号</strong></a>
+                <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span><strong
+                            class="visible-xs-inline">•••</strong></span>
+                <a href="/user/oauth/twitter" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                            class="icon-sn-twitter"></span> <strong class="visible-xs-inline">Twitter 账号</strong></a>
+                <a href="/user/oauth/facebook" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                            class="icon-sn-facebook"></span> <strong class="visible-xs-inline">Facebook 账号</strong></a>
+                <a href="/user/oauth/douban" class=" hidden"
+                   onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                            class="icon-sn-douban"></span> <strong class="visible-xs-inline">豆瓣账号</strong></a>
+            </div>
+        </div>
+        <div class="login-vline hidden-xs hidden-sm"></div>
+        <div class="col-md-4 col-md-pull-3 col-sm-12 login-wrap">
+            <h1 class="h4 text-muted login-title">注册新账号</h1>
+            <form action="/api/user/phone/register" method="POST" role="form" class="mt30">
+                <div class="form-group">
+                    <label for="name" class="control-label">名字</label>
+                    <input type="text" class="form-control" name="name" required placeholder="真实姓名或常用昵称">
+                </div>
+
+
+                <div class="form-group js-register-switch-box">
+                    <div class="mb10">
+                        <label class="radio-inline">
+                            <input type="radio" name="register_type" value="phone" checked> 用手机号注册
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="register_type" value="mail"> 用 Email 注册
+                        </label>
+                    </div>
+                    <div class="js-register-switch-content">
+                        <input type="phone" class="form-control mb15" name="phone" required placeholder="仅支持大陆手机号"
+                               autocomplete="off">
+                        <div class="input-group"><input name="code" type="text"
+                                                        class="form-control js-user-login__phone-code-value"
+                                                        placeholder="短信验证码">
+                            <span class="input-group-btn"><button class="btn btn-default js-user-login__phone-vaild-btn"
+                                                                  style="width:96px;" type="button">获取验证码</button></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password" class="control-label">密码</label>
+                    <input type="password" class="form-control" name="password" required placeholder="不少于 6 位">
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label class="required control-label">验证码</label>
+                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入下方的验证码">
+                    <div class="mt10"><a id="loginReloadCaptcha" href="javascript:void(0)"><img
+                                    data-src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50"/></a>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="checkbox pull-left">
+                        同意并接受<a href="/tos" target="_blank">《服务条款》</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary pl20 pr20 pull-right"
+                            onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div style="position: absolute;transform: scale(0.5,0.5) translate(136%,-114%);">
+        <img src="https://static.segmentfault.com/v-58dfce02/global/img/fool/login@2x.png">
+    </div>
+
+    <div class="text-center text-muted mt30">
+    </div>
+</script>
+<script id="bindPhoneModal" type="text/template">
+    <div class="row bg-white bindphone-model">
+        <div class="col-md-12">
+            <div class="alert alert-warning" role="alert">
+                为了保证账号安全，请先绑定手机
+            </div>
+            <div>
+                <form class="form-horizontal form__bindphone-apply" style="background-color:#fff;padding:0;">
+                    <div class="form-group ">
+                        <label for="phoneNumber" class="col-sm-3 control-label required" >手机号码</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大陆手机号">
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="authCode" class="col-sm-3 control-label required">验证码</label>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control bindphone--code" name="code" placeholder="短信验证码">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://static.segmentfault.com/v-58dfce02"
+        };
+        w.SF.token = (function () {
+    var _vxA8 = //'t3'
+'3e'+'c19'//'Fxr'
++'c4'//'jl'
++//'Q4I'
+'c8'+'2f9'//'H'
++'c63'//'M'
++'bc3'//'c'
++'84t'//'84t'
++//'Z'
+'1'+'2'//'pbM'
++//'g'
+'36'+'187'//'Be'
++//'B5d'
+'5b8'+'31'//'F'
++//'zDH'
+'7'+'b'//'kV'
+, _azsl = [[18,21]];
+
+    for (var i = 0; i < _azsl.length; i ++) {
+        _vxA8 = _vxA8.substring(0, _azsl[i][0]) + _vxA8.substring(_azsl[i][1]);
+    }
+
+    return _vxA8;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+</script>
+    <script crossorigin="" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/assets.js"></script>
+    <script crossorigin="" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/post.min.js"></script>
+
+<script async="" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/asyncjs.php"></script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            
+        
+
+            
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1491450072 });
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<iframe id="p_analyse_iframe" src="./Observable详解 - Angular 2 修仙之路 - SegmentFault_files/saved_resource.html" style="display: none;"></iframe><div id="noteWidget" class="noteWidget hidden hidden-xs">
+    <div class="noteWidget-header clearfix">
+        <h2 class="h4 pull-left">记笔记</h2>
+        <ul class="list-inline pull-right mb0">
+            <li id="noteWidgetMinimize"><span class="icon-minimize"></span></li><li id="noteWidgetZoom"><span class="icon-zoom"></span></li><li id="noteWidgetClose"><span class="icon-close"></span></li>
+        </ul>
+    </div>
+    <form method="POST" action="https://segmentfault.com/api/notes/add" role="form">
+        <div class="form-group">
+            <label for="title" class="sr-only">标题</label>
+            <input type="hidden" value="" id="draftId">
+            <input type="text" name="title" data-error="" autocomplete="off" class="form-control" placeholder="笔记描述" value="">
+        </div>
+        <div class="editor-config clearfix">
+            <select name="lang" class="form-control pull-left input-sm">
+                <optgroup label="文本语法">
+                    <option value="text" data-mode="text">纯文本</option>
+                    <option value="markdown" data-mode="markdown">Markdown</option>
+                    <option value="javascript" data-mode="javascript">Javascript</option>
+                    <option value="css" data-mode="css">CSS</option>
+                    <option value="html5" data-mode="htmlmixed">HTML</option>
+                    <option value="php" data-mode="php">PHP</option>
+                    <option value="python" data-mode="python">Python</option>
+                    <option value="ruby" data-mode="ruby">Ruby</option>
+                    <option value="go" data-mode="go">Go</option>
+                    <option value="c" data-mode="clike">C/C++</option>
+                    <option value="java" data-mode="java">Java</option>
+                    <option value="bash" data-mode="shell">Shell/Bash</option>
+                </optgroup>
+            </select>
+            <div class="pull-right hidden-xs">
+                <select name="indentWithTabs" class="form-control inline-block input-sm">
+                    <optgroup label="缩进模式">
+                        <option value="false">空格缩进</option>
+                        <option value="true">Tabs 缩进</option>
+                    </optgroup>
+                </select>
+                <select name="tabSize" class="form-control inline-block input-sm">
+                    <optgroup label="缩进大小">
+                        <option value="2">2</option>
+                        <option value="4" selected="">4</option>
+                    </optgroup>
+                </select>
+                <select name="lineWrap" class="form-control inline-block input-sm">
+                    <optgroup label="换行方式">
+                        <option value="true">自动换行</option>
+                        <option value="false">不换行</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <textarea id="codeMirror" class="form-control" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 100%; min-height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code"></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+        <div class="mt20 clearfix">
+            <div class="pull-right">
+                <span class="text-muted hidden" id="editorStatus">已保存</span>
+                <a id="dropIt" href="javascript:void(0);" class="mr10 hidden">[舍弃]</a>
+                <button data-type="note" id="publishIt2" class="btn btn-default ml10" data-id="" data-do="add" data-url="" data-text="保存私密笔记" data-name="">保存私密笔记</button>
+                <button data-type="note" id="publishIt" class="btn btn-primary ml10" data-id="" data-do="add" data-url="" data-text="保存公开笔记" data-name="">保存公开笔记</button>
+                </div>
+            </div>
+        </form></div>
+    
+<div id="atwho-container"><div id="atwho-ground-9044ef981491450074398"><div class="atwho-view" id="at-view-64"><ul class="atwho-view-ul"></ul></div></div></div></body></html>
