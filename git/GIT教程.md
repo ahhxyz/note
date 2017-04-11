@@ -148,15 +148,15 @@ Gitosis和gitolite只是Git 服务管理工具，不需要它们一样可以搭�
 
 * 示例：
 
-`git revert eda16b24f1c293708e7eba20692bd8a71a2ac929`
+        `git revert eda16b24f1c293708e7eba20692bd8a71a2ac929`
 
-   恢复到eda16b24f1c293708e7eba20692bd8a71a2ac929这个commit之前的版本，
-   即撤销该commit及之后的所有commit
-   
-   > 如果提示`is a merge but no -m option was given`的错误，这是因为你revert的那个commit是一个merge commit，它有两个parent, 
-   Git不知道base是选哪个parent，就没法diff，所以就抱怨了，所以你要显示告诉Git用哪一个parent。
-   一般来说，如果你在master上merge了dev分支,那么parent 1就是master，parent 2就是dev分支.
-   根据情况，加上`-m 1`或`-m 2`参数即可
+       恢复到eda16b24f1c293708e7eba20692bd8a71a2ac929这个commit之前的版本，
+       即撤销该commit及之后的所有commit
+       
+       > 如果提示`is a merge but no -m option was given`的错误，这是因为你revert的那个commit是一个merge commit，它有两个parent, 
+       Git不知道base是选哪个parent，就没法diff，所以就抱怨了，所以你要显示告诉Git用哪一个parent。
+       一般来说，如果你在master上merge了dev分支,那么parent 1就是master，parent 2就是dev分支.
+       根据情况，加上`-m 1`或`-m 2`参数即可
 
 
 
