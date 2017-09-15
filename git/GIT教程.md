@@ -110,6 +110,14 @@ Gitosis和gitolite只是Git 服务管理工具，不需要它们一样可以搭�
 
 
 #常用GIT命令：
+
+
+## clone项目到指定文件夹
+
+`git clone https://github.com/sunbay/note.git PHP`
+
+该项目的文件夹名就会使用指定的名称
+
 ###分支操作：
 
 * 查看分支：
